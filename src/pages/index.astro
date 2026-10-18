@@ -1,6 +1,6 @@
 ---
 import { profile } from '../data/profile.js';
-import Editorial from '../layouts/themes/Editorial.astro';
+import Compact from '../layouts/themes/Compact.astro';
 import Developer from '../layouts/themes/Developer.astro';
 import Professional from '../layouts/themes/Professional.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
@@ -13,7 +13,7 @@ const assetBase = import.meta.env.BASE_URL;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={profile.tagline} />
-    <meta name="theme-color" content="#081220" />
+    <meta name="theme-color" content="#ffffff" />
     <title>{profile.name} · Resume</title>
     <style>
       html, body { margin: 0; min-width: 320px; }
@@ -23,14 +23,14 @@ const assetBase = import.meta.env.BASE_URL;
   </head>
   <body>
     <ThemeSwitcher />
-    <div data-theme-panel="editorial">
-      <Editorial profile={profile} assetBase={assetBase} />
-    </div>
-    <div data-theme-panel="developer" hidden>
-      <Developer profile={profile} assetBase={assetBase} />
+    <div data-theme-panel="compact">
+      <Compact profile={profile} assetBase={assetBase} />
     </div>
     <div data-theme-panel="professional" hidden>
       <Professional profile={profile} assetBase={assetBase} />
+    </div>
+    <div data-theme-panel="developer" hidden>
+      <Developer profile={profile} assetBase={assetBase} />
     </div>
   </body>
 </html>

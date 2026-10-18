@@ -1,7 +1,7 @@
 // ============================================================================
 // PERSONALIZE THIS FILE — most of the site is driven from here.
 //
-// theme: 'editorial' | 'developer' | 'professional'
+// theme: 'compact' | 'professional' | 'developer'
 //   (visitors can still switch with the theme toggle)
 //
 // Projects:
@@ -14,7 +14,7 @@
 // ============================================================================
 
 export const profile = {
-  theme: 'editorial',
+  theme: 'compact',
 
   photo: '/photo.jpg',
   resume: '/resume.pdf',
