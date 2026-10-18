@@ -12,66 +12,108 @@ export const profile = {
 
   // Your photo. Put the file in public/ (example: public/photo.jpg).
   // Use '/photo.jpg' to show it, or '' to show your initials instead.
-  photo: '/photo.svg',
+  photo: '/photo.jpg',
 
-  name: 'Jordan Lee',
-  role: 'MIS Student · Aspiring Technology Analyst',
+  name: 'Tyler Beach',
+  role: 'Security Architect · Product Security · AI-Enabled Security Automation',
   location: 'Wichita, Kansas',
-  tagline: 'I turn questions into practical solutions.',
+  tagline: 'I help teams ship secure products without unnecessary friction.',
   about:
-    'I am a Management Information Systems student interested in the intersection of business, people, and technology. I like learning by building useful things and explaining how they work.',
-  email: 'jordan.lee@example.com',
-  github: 'https://github.com/',
-  linkedin: 'https://www.linkedin.com/',
+    'I am a security architect and former software engineer focused on application security, product security, and AI-enabled architectural governance. My background spans healthcare, manufacturing, SaaS, and nonprofit technology—partnering with engineers, product teams, and leadership to improve security outcomes while enabling teams to move quickly. I also teach as an adjunct professor and care about connecting industry practice with technology education.',
+  email: 'tylerxbeach@gmail.com',
+  github: 'https://github.com/tyler-beach',
+  linkedin: 'https://www.linkedin.com/in/tylerxbeach',
 
-  skills: ['SQL', 'Python', 'Git & GitHub', 'Data analysis', 'Requirements', 'Documentation'],
+  skills: [
+    'Application Security',
+    'Product Security',
+    'Threat Modeling',
+    'Secure SDLC',
+    'Cloud Security',
+    'DevSecOps',
+    'AI-Enabled Security Automation',
+    'Architecture Governance',
+  ],
 
   education: {
-    school: 'Wichita State University',
-    degree: 'B.B.A. Management Information Systems',
-    detail: 'Expected graduation · 2027',
+    school: 'Friends University',
+    degree: 'M.S. Cyber Security',
+    detail: 'Also B.B.A. Management Information Systems · Wichita State University',
   },
 
   // Add more objects to this list for more roles. Delete objects you do not need.
   experience: [
     {
-      title: 'Technology Intern',
-      organization: 'Example Company',
-      date: 'Summer 2026',
+      title: 'Senior Application Security Architect',
+      organization: 'Datavant',
+      date: 'Nov 2024–Present',
       summary:
-        'Documented a business process, clarified requirements, and communicated progress with technical and business teammates.',
+        'Partner across product, engineering, and platform teams on security architecture, threat modeling, and remediation in regulated healthcare environments. Design AI-enabled automation that strengthens architectural governance and reduces friction for engineers.',
     },
     {
-      title: 'Student Project Lead',
-      organization: 'MIS Course Project',
-      date: '2025–2026',
+      title: 'Adjunct Professor',
+      organization: 'Wichita State University',
+      date: 'Jan 2024–Present',
       summary:
-        'Organized team tasks, collected feedback, and checked the final work against agreed requirements.',
+        'Created and launched the Barton School’s first cybersecurity course (MIS 690E → MIS 711). Teach graduate students application security, cryptography, access control, and risk management through hands-on, consultant-style projects.',
+    },
+    {
+      title: 'Senior Application Security Engineer',
+      organization: 'Cargill',
+      date: 'Jul 2020–Nov 2024',
+      summary:
+        'Led AppSec for major digital and manufacturing modernization initiatives. Helped shape secure SDLC practices influencing 1,000+ developers across 3,000+ applications, and modernized CI/CD security workflows across hybrid and OT environments.',
+    },
+    {
+      title: 'Software Developer',
+      organization: 'Nonprofit Solutions, Inc.',
+      date: '2016–2018',
+      summary:
+        'Built full-stack .NET applications and a multi-agency CRM supporting regulated foster care and behavioral health workflows, including HIPAA-aligned digital process automation.',
     },
   ],
 
   // Add more projects the same way. Class projects are fine if you describe your contribution honestly.
   projects: [
     {
-      kind: 'WEB / UX',
-      title: 'Campus Resource Finder',
-      summary: 'A responsive concept that helps students discover useful campus services.',
-      skills: ['HTML', 'CSS', 'User research'],
-      link: 'https://github.com/',
+      kind: 'PROJECT PATHFINDER',
+      title: 'ADR Deviation Platform',
+      summary:
+        'Evidence-first service for detecting inconsistencies between architectural decisions, technical specs, and implementation changes. Living design notebook, contracts, PoC analysis workflow, and public docs for Project Pathfinder—the ADR deviation half of the Pathfinder pair.',
+      skills: ['Go', 'Architecture', 'AI pipelines', 'Protobuf/gRPC'],
+      link: 'https://github.com/tyler-beach/Platform',
     },
     {
-      kind: 'DATA / AUTOMATION',
-      title: 'Student Budget Analyzer',
-      summary: 'A small tool concept for grouping sample spending and showing monthly patterns.',
-      skills: ['Python', 'Data'],
-      link: 'https://github.com/',
+      kind: 'PROJECT PATHFINDER',
+      title: 'Architecture Governance Platform',
+      summary:
+        'Backstage-hosted user platform for managing decisions: Governance Nodes, ADRs, Intent Engine, playbooks, multi-team RFCs, search, and an AI assistant. The companion UI to the ADR Deviation Platform—together they form Project Pathfinder.',
+      skills: ['Backstage', 'TypeScript', 'Postgres/pgvector', 'Governance'],
+      link: 'https://github.com/skyeshanohan/ADR_Backstage',
     },
     {
-      kind: 'SECURITY / LEARNING',
-      title: 'Secure Setup Checklist',
-      summary: 'A short checklist for safer project setup and fewer common mistakes.',
-      skills: ['Git', 'Documentation'],
-      link: 'https://github.com/',
+      kind: 'SECURITY / OPS',
+      title: 'GitHub Dashboard',
+      summary:
+        'React dashboard for monitoring org repositories, teams, compliance, and security findings (Code Scanning, Secrets, Dependabot) with local caching to cut GitHub API load.',
+      skills: ['React', 'TypeScript', 'Octokit', 'IndexedDB'],
+      link: 'https://github.com/tyler-beach/github-dashboard',
+    },
+    {
+      kind: 'SECURITY / CLI',
+      title: 'GitHub Findings Manager',
+      summary:
+        'High-performance Go CLI that collects SAST, secret scanning, and Dependabot findings across org repos, with filtering, SQLite caching, Excel reporting, and GitHub Actions automation.',
+      skills: ['Go', 'GitHub API', 'Excel reports', 'Actions'],
+      link: 'https://github.com/tyler-beach/github-findings-manager',
+    },
+    {
+      kind: 'SECURE CODING',
+      title: 'R.A.I.L.G.U.A.R.D. Cursor Rules',
+      summary:
+        'Cursor coding rules aligned to the R.A.I.L.G.U.A.R.D. framework—practical guardrails that help AI-assisted development stay security-aware by default.',
+      skills: ['Secure coding', 'Cursor rules', 'Developer enablement'],
+      link: 'https://github.com/tyler-beach/railguard-cursor-coding',
     },
   ],
 };
