@@ -1,6 +1,7 @@
 ---
 import Avatar from '../../components/Avatar.astro';
 import ExperienceDetails from '../../components/ExperienceDetails.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 const { profile, assetBase = '/' } = Astro.props;
 const education = Array.isArray(profile.education) ? profile.education : profile.education ? [profile.education] : [];
 const certifications = profile.certifications ?? [];
@@ -50,16 +51,10 @@ const showInterests = interests.length > 0 || learning.length > 0;
   </section>
 
   <section class="dev-section" id="projects">
-    <div class="section-title"><span>01 / Selected projects</span><span>Top of page ↓</span></div>
-    <div class="dev-cards">
+    <div class="section-title"><span>01 / Selected projects</span><span>Case studies ↓</span></div>
+    <div class="dev-projects">
       {profile.projects.map((project) => (
-        <article>
-          <span>{project.kind}</span>
-          <h3>{project.title}</h3>
-          <p>{project.summary}</p>
-          <small>{project.skills.join(' · ')}</small>
-          <a href={project.link} target="_blank" rel="noreferrer">Open ↗</a>
-        </article>
+        <ProjectCard project={project} assetBase={assetBase} />
       ))}
     </div>
   </section>
@@ -188,19 +183,15 @@ const showInterests = interests.length > 0 || learning.length > 0;
 .terminal .k{color:#a7f3d0}.terminal .s{color:#87e2d2}
 .dev-section{padding:8px clamp(16px,5vw,64px) 36px}
 .section-title{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:14px 0;font:11px ui-monospace,monospace;color:#9cb5c7;margin-bottom:14px}
-.dev-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.dev-cards article{padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;gap:8px}
-.dev-cards span,.dev-cards small{font:10px ui-monospace,monospace;color:var(--accent);letter-spacing:.05em}
-.dev-cards h3{font:600 17px system-ui,sans-serif;margin:0}
-.dev-cards p{font:13px/1.55 system-ui,sans-serif;color:var(--muted);margin:0;flex:1}
-.dev-cards a{color:var(--text);font:700 12px system-ui,sans-serif}
-.dev-timeline article{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.dev-projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;--pc-bg:var(--panel);--pc-line:var(--line);--pc-muted:var(--muted);--pc-accent:var(--accent)}
+.dev-timeline article{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
 .dev-timeline.compact article{padding:10px 0}
 .dev-timeline time{font:11px ui-monospace,monospace;color:#64748b}
 .dev-timeline h3{margin:0 0 2px;font:16px system-ui,sans-serif}
-.dev-timeline .org,.org{color:var(--accent);font-weight:600;margin:0 0 4px;font-size:13px}
-:global(.theme-developer .exp-summary){color:var(--muted);font:13px/1.5 system-ui,sans-serif;margin:0}
-:global(.theme-developer .exp-highlights){display:none}
+.dev-timeline .org,.org{color:var(--accent);font-weight:600;margin:0 0 6px;font-size:13px}
+:global(.theme-developer .exp-summary){color:var(--muted);font:13px/1.55 system-ui,sans-serif;margin:0 0 8px}
+:global(.theme-developer .exp-highlights){margin:0;padding-left:18px;color:var(--muted);font:13px/1.5 system-ui,sans-serif}
+:global(.theme-developer .exp-highlights li){margin-bottom:4px}
 .dev-bullets{margin:0;padding-left:18px;color:var(--muted);font:14px/1.55 system-ui,sans-serif}
 .dev-cred-list{margin:0;padding-left:18px;color:var(--muted);font:14px/1.65 system-ui,sans-serif}
 .dev-cred-list strong{color:var(--text)}
@@ -215,7 +206,7 @@ const showInterests = interests.length > 0 || learning.length > 0;
 .dev-links{display:flex;gap:18px;flex-wrap:wrap}
 .dev-links a{color:var(--accent);font:14px ui-monospace,monospace}
 @media(max-width:850px){
-  .dev-hero,.dev-cards,.split,.dev-timeline article,.interest-grid{grid-template-columns:1fr}
+  .dev-hero,.dev-projects,.split,.dev-timeline article,.interest-grid{grid-template-columns:1fr}
   .dev-nav a{margin-left:0;margin-right:12px}
 }
 </style>
