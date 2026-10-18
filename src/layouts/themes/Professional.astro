@@ -1,6 +1,7 @@
 ---
 import Avatar from '../../components/Avatar.astro';
 import ExperienceDetails from '../../components/ExperienceDetails.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 const { profile, assetBase = '/' } = Astro.props;
 const education = Array.isArray(profile.education) ? profile.education : profile.education ? [profile.education] : [];
 const certifications = profile.certifications ?? [];
@@ -54,16 +55,11 @@ const showInterests = interests.length > 0 || learning.length > 0;
 
     <section id="projects">
       <h2>Selected projects</h2>
-      {profile.projects.map((project) => (
-        <article class="pro-project">
-          <div>
-            <h3>{project.title}</h3>
-            <p class="muted">{project.kind}</p>
-            <p>{project.summary}</p>
-          </div>
-          <a href={project.link} target="_blank" rel="noreferrer">Link ↗</a>
-        </article>
-      ))}
+      <div class="pro-projects">
+        {profile.projects.map((project) => (
+          <ProjectCard project={project} assetBase={assetBase} />
+        ))}
+      </div>
     </section>
 
     {careerHighlights.length > 0 && (
@@ -159,15 +155,14 @@ const showInterests = interests.length > 0 || learning.length > 0;
 .label-inline{font:700 11px system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px!important}
 .pro-bullets{margin:0;padding-left:18px;color:#334155;font:14px/1.55 system-ui,sans-serif}
 .pro-bullets li{margin-bottom:6px}
-.pro-role{display:grid;grid-template-columns:1fr auto;gap:2px 14px;padding:12px 0;border-bottom:1px solid var(--soft)}
+.pro-role{display:grid;grid-template-columns:1fr auto;gap:2px 14px;padding:14px 0;border-bottom:1px solid var(--soft)}
 .pro-role h3{margin:0;font:600 15px system-ui,sans-serif}
 .pro-role .summary{grid-column:1/-1;margin:4px 0 0}
 .pro-role span{font:12px ui-monospace,Menlo,monospace;color:var(--muted)}
-:global(.theme-professional .exp-summary){margin:0;color:#475569;font:13px/1.5 system-ui,sans-serif}
-:global(.theme-professional .exp-highlights){display:none}
-.pro-project{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--soft)}
-.pro-project h3{margin:0 0 2px;font:600 15px system-ui,sans-serif}
-.pro-project a{flex-shrink:0;font:700 12px system-ui,sans-serif;color:var(--teal)}
+:global(.theme-professional .exp-summary){margin:0 0 6px;color:#475569;font:13px/1.5 system-ui,sans-serif}
+:global(.theme-professional .exp-highlights){margin:0;padding-left:18px;color:#64748b;font:13px/1.5 system-ui,sans-serif}
+:global(.theme-professional .exp-highlights li){margin-bottom:4px}
+.pro-projects{display:grid;gap:12px;--pc-bg:#fff;--pc-line:var(--line);--pc-muted:var(--muted);--pc-accent:var(--teal)}
 @media(max-width:800px){
   .theme-professional{grid-template-columns:1fr}
   .pro-side{padding:24px 20px}

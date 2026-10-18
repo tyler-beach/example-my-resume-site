@@ -1,6 +1,7 @@
 ---
 import Avatar from '../../components/Avatar.astro';
 import ExperienceDetails from '../../components/ExperienceDetails.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 const { profile, assetBase = '/' } = Astro.props;
 const education = Array.isArray(profile.education) ? profile.education : profile.education ? [profile.education] : [];
 const certifications = profile.certifications ?? [];
@@ -43,12 +44,7 @@ const showInterests = interests.length > 0 || learning.length > 0;
     </div>
     <div class="ed-project-list">
       {profile.projects.map((project) => (
-        <article>
-          <span>{project.kind}</span>
-          <h3>{project.title}</h3>
-          <p>{project.summary}</p>
-          <a href={project.link} target="_blank" rel="noreferrer">View ↗</a>
-        </article>
+        <ProjectCard project={project} assetBase={assetBase} />
       ))}
     </div>
   </section>
@@ -153,21 +149,17 @@ const showInterests = interests.length > 0 || learning.length > 0;
 :global(.avatar-initials.ed-photo){display:grid;place-items:center;font:48px Georgia,serif;color:var(--navy-2)}
 .ed-projects{padding:clamp(36px,6vw,56px) clamp(18px,6vw,72px) 24px}
 .ed-projects-head h2{font:clamp(28px,4vw,40px)/1.05 Georgia,serif;margin:0 0 20px}
-.ed-project-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.ed-project-list article{background:#fff;border:1px solid var(--line);padding:18px;border-radius:4px;display:flex;flex-direction:column;gap:8px}
-.ed-project-list span{font:10px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:var(--teal)}
-.ed-project-list h3{font:20px Georgia,serif;margin:0}
-.ed-project-list p{font:14px/1.55 system-ui,sans-serif;color:var(--soft);margin:0;flex:1}
-.ed-project-list a{font:700 12px system-ui,sans-serif;color:var(--teal)}
+.ed-project-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;--pc-bg:#fff;--pc-line:var(--line);--pc-muted:var(--soft);--pc-accent:var(--teal)}
 .ed-section{padding:12px clamp(18px,6vw,72px) 36px}
 .ed-experience{border-top:1px solid var(--line)}
-.role{padding:14px 0;border-bottom:1px solid var(--line)}
+.role{padding:16px 0;border-bottom:1px solid var(--line)}
 .role-top{display:flex;justify-content:space-between;gap:16px;align-items:baseline;flex-wrap:wrap}
 .role h3{font:18px/1.25 Georgia,serif;margin:0 0 2px}
 .role time{font:12px ui-monospace,Menlo,monospace;color:var(--soft);white-space:nowrap}
 .muted{font:14px/1.4 system-ui,sans-serif;color:var(--soft);margin:0}
-:global(.theme-editorial .exp-summary){font:14px/1.55 system-ui,sans-serif;color:var(--soft);margin:8px 0 0}
-:global(.theme-editorial .exp-highlights){display:none}
+:global(.theme-editorial .exp-summary){font:14px/1.55 system-ui,sans-serif;color:var(--soft);margin:8px 0 6px}
+:global(.theme-editorial .exp-highlights){margin:0;padding-left:18px;color:var(--soft);font:13px/1.5 system-ui,sans-serif}
+:global(.theme-editorial .exp-highlights li){margin-bottom:4px}
 .ed-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,48px);padding:12px clamp(18px,6vw,72px) 36px}
 .body{font:15px/1.65 system-ui,sans-serif;color:var(--soft);margin:0 0 16px}
 .ed-edu{margin-bottom:12px}
