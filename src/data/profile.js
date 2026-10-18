@@ -1,38 +1,269 @@
 // ============================================================================
-// PERSONALIZE THIS FILE — most of the site is driven from here.
+// EXAMPLE SITE — three journey stages for workshop demos.
+// Content is illustrative (not a perfect timeline). Students normally
+// keep one profile object; here we ship three so each layout feels full.
 //
-// theme: 'compact' | 'professional' | 'developer'
-//   (visitors can still switch with the theme toggle)
-//
-// Projects:
-//   - Always fill title, summary, skills, link (and demo if you have one)
-//   - Optional slug → creates /projects/<slug>/ detail page
-//   - Optional description, highlights, images for that page
-//   - Put screenshots in public/projects/ then list paths in images: ['/projects/foo.jpg']
-//
-// Only publish information you are comfortable making public.
+// theme: 'student' | 'emerging' | 'professional'
+// Projects with `slug` get /projects/<slug>/ pages.
 // ============================================================================
 
-export const profile = {
-  theme: 'compact',
-
+const shared = {
+  name: 'Tyler Beach',
   photo: '/photo.jpg',
   resume: '/resume.pdf',
-
-  // Optional short label under your name. Leave '' to hide.
-  badge: '',
-
-  name: 'Tyler Beach',
-  role: 'Security Architect',
-  location: 'Wichita, Kansas',
-  tagline: 'Application security, product security, and practical architecture reviews.',
-  about:
-    'Security architect and former software engineer. I work on application security, product security, and AI-assisted architecture checks across healthcare, manufacturing, and SaaS. I also teach cybersecurity at Wichita State University.',
-
   email: 'tylerxbeach@gmail.com',
   github: 'https://github.com/tyler-beach',
   linkedin: 'https://www.linkedin.com/in/tylerxbeach',
+  location: 'Wichita, Kansas',
+};
 
+/** Early student: classes, campus work, side projects — no internship yet. */
+export const studentProfile = {
+  ...shared,
+  theme: 'student',
+  stageLabel: 'Student example',
+  role: 'MIS & Cybersecurity Student',
+  tagline: 'Learning security and systems by building small, useful projects.',
+  about:
+    'Undergraduate focused on management information systems and cybersecurity. Most of my experience so far is coursework, campus involvement, and personal projects. I like turning class assignments into things I can show and explain.',
+  badge: 'Looking for internships',
+  skills: [
+    'Python',
+    'SQL',
+    'Networking basics',
+    'Linux',
+    'Git & GitHub',
+    'Technical writing',
+    'Risk fundamentals',
+  ],
+  education: [
+    {
+      school: 'Wichita State University',
+      degree: 'B.B.A. Management Information Systems',
+      detail: 'In progress',
+    },
+    {
+      school: 'Cowley College',
+      degree: 'A.A. Information Assurance · A.S. Computer Science',
+      detail: 'Completed',
+    },
+  ],
+  coursework: [
+    {
+      title: 'Secure Coding Practices',
+      detail: 'Threats, input validation, and safer defaults in web apps.',
+    },
+    {
+      title: 'Network Security',
+      detail: 'Segmentation, monitoring basics, and lab-based attack/defense scenarios.',
+    },
+    {
+      title: 'Systems Analysis & Design',
+      detail: 'Requirements, process mapping, and stakeholder communication.',
+    },
+    {
+      title: 'Database Management',
+      detail: 'Relational modeling, SQL queries, and access control concepts.',
+    },
+  ],
+  activities: [
+    {
+      title: 'Cyber Club Member',
+      organization: 'Campus technology club',
+      detail: 'Weekly labs, capture-the-flag practice, and peer study sessions.',
+    },
+    {
+      title: 'Volunteer Help Desk',
+      organization: 'Community nonprofit',
+      detail: 'Helped staff with device setup, password resets, and basic security hygiene.',
+    },
+    {
+      title: 'Guest workshop attendee',
+      organization: 'Local tech meetups',
+      detail: 'Notes from talks on cloud, AppSec, and career paths in security.',
+    },
+  ],
+  experience: [],
+  certifications: [],
+  honors: [{ title: 'Dean’s List', detail: 'Selected terms' }],
+  interests: ['Teaching others what I just learned', 'Home lab tinkering', 'Writing clear docs'],
+  learning: ['Web app security labs', 'GitHub Actions basics'],
+  projects: [
+    {
+      slug: 'campus-resource-finder',
+      title: 'Campus Resource Finder',
+      summary: 'Class project: a simple site concept that helps students find tutoring and advising services.',
+      description:
+        'Built as a course deliverable. Focused on clear navigation, mobile layout, and writing up the research notes behind the information architecture.',
+      highlights: [
+        'Information architecture from student interviews',
+        'Responsive layout and accessibility checklist',
+        'Short write-up of decisions for the final presentation',
+      ],
+      skills: ['HTML', 'CSS', 'User research'],
+      link: 'https://github.com/tyler-beach',
+    },
+    {
+      slug: 'home-lab-notes',
+      title: 'Home Lab Notes',
+      summary: 'Personal notes and diagrams from standing up a small Linux lab at home.',
+      description:
+        'Documented virtual machines, basic networking, and the commands I reused most often so future-me (and classmates) could follow along.',
+      highlights: [
+        'Repeatable setup checklist',
+        'Screenshots and short explanations',
+        'Shared with classmates as a study aid',
+      ],
+      skills: ['Linux', 'Networking', 'Documentation'],
+      link: 'https://github.com/tyler-beach',
+    },
+    {
+      slug: 'secure-setup-checklist',
+      title: 'Secure Setup Checklist',
+      summary: 'A short checklist for safer project setup before a class demo or team handoff.',
+      description:
+        'Collected common mistakes from labs (secrets in repos, weak defaults, missing updates) into a one-page checklist teammates could reuse.',
+      highlights: [
+        'Secrets and .gitignore reminders',
+        'Dependency and update checks',
+        'Written for beginners, not auditors',
+      ],
+      skills: ['Security basics', 'Git', 'Documentation'],
+      link: 'https://github.com/tyler-beach',
+    },
+  ],
+};
+
+/** Mid journey: internship + stronger projects, still early career. */
+export const emergingProfile = {
+  ...shared,
+  theme: 'emerging',
+  stageLabel: 'Emerging example',
+  role: 'IT Risk Analyst · Aspiring AppSec Engineer',
+  tagline: 'Internship experience plus security projects I can walk through end to end.',
+  about:
+    'Early-career security professional with an internship in IT risk, hands-on class and personal projects, and a growing interest in application security. Comfortable explaining risk to non-security teammates and shipping small tools that remove busywork.',
+  badge: 'Open to AppSec roles',
+  skills: [
+    'Risk assessments',
+    'Security reviews',
+    'Python',
+    'SQL',
+    'GitHub',
+    'Secure SDLC basics',
+    'Technical writing',
+  ],
+  education: [
+    {
+      school: 'Friends University',
+      degree: 'M.S. Cyber Security',
+      detail: 'In progress',
+    },
+    {
+      school: 'Wichita State University',
+      degree: 'B.B.A. Management Information Systems',
+      detail: 'Completed',
+    },
+  ],
+  coursework: [],
+  activities: [],
+  experience: [
+    {
+      title: 'IT Risk Intern',
+      organization: 'Regional manufacturing company',
+      date: 'Summer 2018',
+      summary:
+        'Supported risk assessments, control evidence gathering, and security review meetings with IT and operations partners.',
+      highlights: [
+        'Drafted findings and remediation notes for two business applications.',
+        'Built a simple tracker so the team could see open risks by owner.',
+      ],
+    },
+    {
+      title: 'Student Developer',
+      organization: 'Nonprofit Solutions (contract / campus-adjacent)',
+      date: '2017–2018',
+      summary:
+        'Helped maintain internal .NET tools and documentation used by nonprofit staff.',
+      highlights: [
+        'Fixed bugs and wrote setup notes for non-technical users.',
+      ],
+    },
+  ],
+  certifications: [
+    {
+      name: 'CompTIA Security+ (example)',
+      issuer: 'CompTIA',
+      detail: '',
+    },
+  ],
+  honors: [{ title: 'Eagle Scout', detail: '' }],
+  interests: ['Application security', 'Developer enablement', 'Mentoring students'],
+  learning: ['SAST triage', 'Threat modeling worksheets'],
+  projects: [
+    {
+      slug: 'github-findings-manager',
+      title: 'GitHub Findings Manager',
+      summary: 'Go CLI that collects org security findings and writes Excel reports.',
+      description:
+        'Built to practice API automation: parallel collection, rate limiting, and a report security teammates can open without another dashboard login.',
+      highlights: [
+        'Worker pools with rate limiting',
+        'Excel output for weekly reviews',
+        'GitHub Actions workflow for scheduled runs',
+      ],
+      skills: ['Go', 'GitHub API', 'Actions'],
+      link: 'https://github.com/tyler-beach/github-findings-manager',
+    },
+    {
+      slug: 'github-dashboard',
+      title: 'GitHub Dashboard',
+      summary: 'Org view of repos, compliance checks, and security findings.',
+      description:
+        'React dashboard that uses a GitHub PAT, caches data locally, and surfaces Code Scanning, Secrets, and Dependabot findings with ownership context.',
+      highlights: [
+        'Local caching to reduce API calls',
+        'Filters by custom repository properties',
+      ],
+      skills: ['React', 'TypeScript', 'Octokit'],
+      link: 'https://github.com/tyler-beach/github-dashboard',
+    },
+    {
+      slug: 'railguard-cursor-rules',
+      title: 'R.A.I.L.G.U.A.R.D. Cursor Rules',
+      summary: 'Cursor rules that keep AI-assisted coding security-aware.',
+      description:
+        'A small rules pack for day-to-day secure development with coding assistants — meant as a starting point teams can fork.',
+      highlights: [
+        'Mapped to a secure-coding framework',
+        'Focused on habits teams can adopt quickly',
+      ],
+      skills: ['Secure coding', 'Cursor rules'],
+      link: 'https://github.com/tyler-beach/railguard-cursor-coding',
+    },
+    {
+      slug: 'secure-setup-checklist',
+      title: 'Secure Setup Checklist',
+      summary: 'Reusable checklist carried forward from school into internship onboarding.',
+      description:
+        'Expanded the student checklist with internship lessons: ticket hygiene, evidence folders, and how to ask better review questions.',
+      highlights: ['Onboarding-friendly language', 'Pairs with risk review notes'],
+      skills: ['Documentation', 'Risk'],
+      link: 'https://github.com/tyler-beach',
+    },
+  ],
+};
+
+/** Full resume: denser professional profile. */
+export const professionalProfile = {
+  ...shared,
+  theme: 'professional',
+  stageLabel: 'Professional example',
+  role: 'Security Architect',
+  tagline: 'Application security, product security, and practical architecture reviews.',
+  about:
+    'Security architect and former software engineer. I work on application security, product security, and AI-assisted architecture checks across healthcare, manufacturing, and SaaS. I also teach cybersecurity at Wichita State University.',
+  badge: '',
   skills: [
     'Application Security',
     'Product Security',
@@ -43,9 +274,6 @@ export const profile = {
     'DevSecOps',
     'GRC',
   ],
-
-  careerHighlights: [],
-
   education: [
     {
       school: 'Friends University',
@@ -63,32 +291,8 @@ export const profile = {
       detail: '2012–2014',
     },
   ],
-
-  certifications: [
-    {
-      name: 'GIAC Certified Penetration Tester (GPEN)',
-      issuer: 'GIAC',
-      detail: '',
-    },
-  ],
-
-  honors: [
-    { title: 'Maurer Leadership Award', detail: '' },
-    { title: 'Eagle Scout', detail: '' },
-  ],
-
-  interests: [
-    'Teaching and mentoring',
-    'Architecture decision records',
-    'Guest lecturing',
-  ],
-
-  learning: [
-    'Backstage plugins',
-    'Protobuf / gRPC',
-  ],
-
-  // Keep experience readable: one short summary, optional 1–2 bullets.
+  coursework: [],
+  activities: [],
   experience: [
     {
       title: 'Senior Application Security Architect',
@@ -105,9 +309,7 @@ export const profile = {
       organization: 'Wichita State University',
       date: 'Jan 2024–Present',
       summary: 'Created and teach MIS 711, the Barton School graduate cybersecurity course.',
-      highlights: [
-        'Hands-on labs and industry-style student projects.',
-      ],
+      highlights: ['Hands-on labs and industry-style student projects.'],
     },
     {
       title: 'Senior Application Security Engineer',
@@ -142,7 +344,23 @@ export const profile = {
       ],
     },
   ],
-
+  certifications: [
+    {
+      name: 'GIAC Certified Penetration Tester (GPEN)',
+      issuer: 'GIAC',
+      detail: '',
+    },
+  ],
+  honors: [
+    { title: 'Maurer Leadership Award', detail: '' },
+    { title: 'Eagle Scout', detail: '' },
+  ],
+  interests: [
+    'Teaching and mentoring',
+    'Architecture decision records',
+    'Guest lecturing',
+  ],
+  learning: ['Backstage plugins', 'Protobuf / gRPC'],
   projects: [
     {
       slug: 'adr-deviation-platform',
@@ -213,3 +431,24 @@ export const profile = {
     },
   ],
 };
+
+export const stages = {
+  student: studentProfile,
+  emerging: emergingProfile,
+  professional: professionalProfile,
+};
+
+/** Default export used by shared project pages and older imports. */
+export const profile = professionalProfile;
+
+export function allProjects() {
+  const bySlug = new Map();
+  for (const stage of Object.values(stages)) {
+    for (const project of stage.projects ?? []) {
+      if (project.slug && !bySlug.has(project.slug)) {
+        bySlug.set(project.slug, project);
+      }
+    }
+  }
+  return [...bySlug.values()];
+}

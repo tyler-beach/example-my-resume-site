@@ -17,6 +17,7 @@ const showInterests = interests.length > 0 || learning.length > 0;
 ---
 <div class="theme-professional">
   <aside class="pro-side">
+    {profile.stageLabel && <p class="pro-stage">{profile.stageLabel}</p>}
     <Avatar profile={profile} assetBase={assetBase} size="lg" class="pro-photo" />
     <h1>{profile.name}</h1>
     <p class="role">{profile.role}</p>
@@ -131,6 +132,7 @@ const showInterests = interests.length > 0 || learning.length > 0;
 .theme-professional{--ink:#081220;--muted:#64748b;--line:#dbe3eb;--soft:#f8fafc;--side:#081220;--teal:#0f766e;--mint:#a7f3d0;display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh;background:#fff;color:#1a1a1a;font-family:system-ui,-apple-system,sans-serif;padding-bottom:72px}
 .theme-professional *{box-sizing:border-box}
 .pro-side{background:var(--side);color:#fff;padding:32px 24px}
+.pro-stage{display:inline-block;margin:0 0 14px;padding:5px 8px;border-radius:4px;background:#0f2633;color:var(--mint);font:600 10px/1 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase}
 :global(.pro-photo){width:108px;height:108px;border-radius:50%;object-fit:cover;border:3px solid #fff;margin-bottom:16px}
 :global(.avatar-initials.pro-photo){display:grid;place-items:center;background:#fff;color:var(--side);font:700 32px system-ui,sans-serif}
 .pro-side h1{font:700 26px/1.1 system-ui,sans-serif;margin:0 0 8px}
