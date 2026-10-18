@@ -1,6 +1,17 @@
 ---
 import Avatar from '../../components/Avatar.astro';
 const { profile, assetBase = '/' } = Astro.props;
+const education = Array.isArray(profile.education)
+  ? profile.education
+  : profile.education
+    ? [profile.education]
+    : [];
+const certifications = profile.certifications ?? [];
+const honors = profile.honors ?? [];
+const interests = profile.interests ?? [];
+const learning = profile.learning ?? [];
+const showCredentials = certifications.length > 0 || honors.length > 0;
+const showInterests = interests.length > 0 || learning.length > 0;
 ---
 <div class="theme-developer">
   <header class="dev-nav">
@@ -11,6 +22,9 @@ const { profile, assetBase = '/' } = Astro.props;
     <nav aria-label="Main">
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      {showCredentials && <a href="#credentials">Credentials</a>}
+      {showInterests && <a href="#interests">Interests</a>}
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -18,7 +32,7 @@ const { profile, assetBase = '/' } = Astro.props;
 
   <section class="dev-hero">
     <div>
-      <p class="badge">Project Pathfinder</p>
+      {profile.badge && <p class="badge">{profile.badge}</p>}
       <h1>Hi, I'm {profile.name.split(' ')[0]}.<br /><span>{profile.role}</span></h1>
       <p class="intro">{profile.tagline} {profile.about}</p>
       <div class="tag-row">{profile.skills.slice(0, 5).map((skill) => <span>{skill}</span>)}</div>
@@ -36,7 +50,7 @@ const { profile, assetBase = '/' } = Astro.props;
   <section class="dev-section" id="projects">
     <div class="section-title"><span>01 / Selected projects</span><span>Projects first ↓</span></div>
     <div class="dev-cards">
-      {profile.projects.map((project, i) => (
+      {profile.projects.map((project) => (
         <article>
           <span>{project.kind}</span>
           <h3>{project.title}</h3>
@@ -64,12 +78,69 @@ const { profile, assetBase = '/' } = Astro.props;
     </div>
   </section>
 
+  <section class="dev-section" id="education">
+    <div class="section-title"><span>03 / Education</span></div>
+    <div class="dev-timeline">
+      {education.map((item) => (
+        <article>
+          <time>{item.detail}</time>
+          <div>
+            <h3>{item.degree}</h3>
+            <p class="org">{item.school}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  {showCredentials && (
+    <section class="dev-section" id="credentials">
+      <div class="section-title"><span>04 / Credentials & honors</span></div>
+      <div class="dev-cards compact">
+        {certifications.map((item) => (
+          <article>
+            <span>Certification</span>
+            <h3>{item.name}</h3>
+            {(item.issuer || item.detail) && (
+              <p>{[item.issuer, item.detail].filter(Boolean).join(' · ')}</p>
+            )}
+          </article>
+        ))}
+        {honors.map((item) => (
+          <article>
+            <span>Honor</span>
+            <h3>{item.title}</h3>
+            {item.detail && <p>{item.detail}</p>}
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {showInterests && (
+    <section class="dev-section" id="interests">
+      <div class="section-title"><span>05 / Interests & learning</span></div>
+      <div class="interest-grid">
+        {interests.length > 0 && (
+          <div>
+            <p class="subhead">Interests</p>
+            <div class="tag-row">{interests.map((item) => <span>{item}</span>)}</div>
+          </div>
+        )}
+        {learning.length > 0 && (
+          <div>
+            <p class="subhead">Currently learning</p>
+            <div class="tag-row">{learning.map((item) => <span>{item}</span>)}</div>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
   <section class="dev-section split" id="about">
     <div>
-      <div class="section-title"><span>03 / About</span></div>
+      <div class="section-title"><span>06 / About</span></div>
       <p>{profile.about}</p>
-      <p class="org">{profile.education.school}</p>
-      <p>{profile.education.degree} · {profile.education.detail}</p>
     </div>
     <div class="dev-photo-panel">
       <Avatar profile={profile} assetBase={assetBase} size="lg" />
@@ -113,6 +184,7 @@ const { profile, assetBase = '/' } = Astro.props;
 .dev-section{padding:12px clamp(16px,5vw,64px) 48px}
 .section-title{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:16px 0;font:11px ui-monospace,monospace;color:#9cb5c7;margin-bottom:16px}
 .dev-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.dev-cards.compact{grid-template-columns:repeat(2,minmax(0,1fr))}
 .dev-cards article{padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;gap:8px}
 .dev-cards span,.dev-cards small{font:10px ui-monospace,monospace;color:var(--accent);letter-spacing:.05em}
 .dev-cards h3{font:600 18px system-ui,sans-serif;margin:0}
@@ -123,6 +195,8 @@ const { profile, assetBase = '/' } = Astro.props;
 .dev-timeline h3{margin:0 0 4px;font:18px system-ui,sans-serif}
 .dev-timeline .org,.org{color:var(--accent);font-weight:600}
 .dev-timeline p{color:var(--muted);font:14px/1.6 system-ui,sans-serif}
+.interest-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.subhead{margin:0 0 4px;font:11px ui-monospace,monospace;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
 .split{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
 .dev-photo-panel{display:grid;place-items:center}
 :global(.theme-developer .avatar-lg){width:220px;height:220px;border-radius:18px;object-fit:cover;border:1px solid var(--line)}
@@ -132,7 +206,7 @@ const { profile, assetBase = '/' } = Astro.props;
 .dev-links{display:flex;gap:18px;flex-wrap:wrap}
 .dev-links a{color:var(--accent);font:14px ui-monospace,monospace}
 @media(max-width:850px){
-  .dev-hero,.dev-cards,.split,.dev-timeline article{grid-template-columns:1fr}
+  .dev-hero,.dev-cards,.dev-cards.compact,.split,.dev-timeline article,.interest-grid{grid-template-columns:1fr}
   .dev-nav a{margin-left:0;margin-right:12px}
 }
 </style>

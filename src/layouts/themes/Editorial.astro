@@ -1,6 +1,17 @@
 ---
 import Avatar from '../../components/Avatar.astro';
 const { profile, assetBase = '/' } = Astro.props;
+const education = Array.isArray(profile.education)
+  ? profile.education
+  : profile.education
+    ? [profile.education]
+    : [];
+const certifications = profile.certifications ?? [];
+const honors = profile.honors ?? [];
+const interests = profile.interests ?? [];
+const learning = profile.learning ?? [];
+const showCredentials = certifications.length > 0 || honors.length > 0;
+const showInterests = interests.length > 0 || learning.length > 0;
 ---
 <div class="theme-editorial">
   <header class="ed-topbar">
@@ -10,7 +21,8 @@ const { profile, assetBase = '/' } = Astro.props;
 
   <section class="ed-hero">
     <div class="ed-hero-copy">
-      <p class="eyebrow">Business · Technology · Data</p>
+      {profile.badge && <p class="eyebrow">{profile.badge}</p>}
+      {!profile.badge && <p class="eyebrow">Business · Technology · Data</p>}
       <h1>{profile.name.split(' ')[0]}<br /><em>{profile.name.split(' ').slice(1).join(' ') || profile.name}.</em></h1>
       <p class="lede">{profile.tagline}</p>
       <div class="ed-actions">
@@ -26,8 +38,12 @@ const { profile, assetBase = '/' } = Astro.props;
       <p class="eyebrow">A little about me</p>
       <p class="body">{profile.about}</p>
       <p class="eyebrow">Education</p>
-      <h2>{profile.education.degree}</h2>
-      <p class="muted">{profile.education.school} · {profile.education.detail}</p>
+      {education.map((item) => (
+        <div class="ed-edu">
+          <h2>{item.degree}</h2>
+          <p class="muted">{item.school} · {item.detail}</p>
+        </div>
+      ))}
       <div class="skills">{profile.skills.map((skill) => <span>{skill}</span>)}</div>
     </div>
     <div id="experience">
@@ -41,6 +57,43 @@ const { profile, assetBase = '/' } = Astro.props;
       ))}
     </div>
   </section>
+
+  {showCredentials && (
+    <section class="ed-extra" id="credentials">
+      <p class="eyebrow">Credentials & honors</p>
+      <div class="ed-extra-list">
+        {certifications.map((item) => (
+          <article>
+            <span>Certification</span>
+            <h3>{item.name}</h3>
+            <p>{[item.issuer, item.detail].filter(Boolean).join(' · ')}</p>
+          </article>
+        ))}
+        {honors.map((item) => (
+          <article>
+            <span>Honor</span>
+            <h3>{item.title}</h3>
+            {item.detail && <p>{item.detail}</p>}
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {showInterests && (
+    <section class="ed-extra" id="interests">
+      <p class="eyebrow">Interests & learning</p>
+      {interests.length > 0 && (
+        <div class="skills">{interests.map((item) => <span>{item}</span>)}</div>
+      )}
+      {learning.length > 0 && (
+        <>
+          <p class="eyebrow learning-label">Currently learning</p>
+          <div class="skills">{learning.map((item) => <span>{item}</span>)}</div>
+        </>
+      )}
+    </section>
+  )}
 
   <section class="ed-projects" id="projects">
     <div class="ed-projects-head">
@@ -86,11 +139,19 @@ const { profile, assetBase = '/' } = Astro.props;
 .ed-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);padding:clamp(36px,6vw,72px) clamp(18px,6vw,72px)}
 .body{font:16px/1.75 system-ui,sans-serif;color:var(--soft);margin:0 0 20px}
 .muted{font:14px/1.5 system-ui,sans-serif;color:var(--soft);margin:0 0 8px}
-.ed-grid h2{font:28px/1.15 Georgia,serif;margin:0 0 8px}
+.ed-grid h2,.ed-edu h2{font:28px/1.15 Georgia,serif;margin:0 0 8px}
+.ed-edu{margin-bottom:14px}
 .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .skills span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;font:12px system-ui,sans-serif;background:#fff8}
 .role{padding:18px 0;border-top:1px solid var(--line)}
 .role h3{font:20px/1.2 Georgia,serif;margin:0 0 6px}
+.ed-extra{padding:0 clamp(18px,6vw,72px) clamp(36px,5vw,56px)}
+.ed-extra-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ed-extra-list article{background:#fff;border:1px solid var(--line);padding:18px;border-radius:4px}
+.ed-extra-list span{font:10px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:var(--leaf)}
+.ed-extra-list h3{font:20px Georgia,serif;margin:8px 0}
+.ed-extra-list p{font:14px/1.55 system-ui,sans-serif;color:var(--soft);margin:0}
+.learning-label{margin-top:22px}
 .ed-projects{padding:0 clamp(18px,6vw,72px) clamp(48px,7vw,80px)}
 .ed-projects-head h2{font:clamp(32px,5vw,48px)/1.05 Georgia,serif;margin:0 0 24px}
 .ed-project-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
@@ -104,6 +165,6 @@ const { profile, assetBase = '/' } = Astro.props;
 .ed-links{display:flex;flex-wrap:wrap;gap:18px}
 .ed-links a{color:#dbe7a1;font:14px system-ui,sans-serif}
 @media(max-width:800px){
-  .ed-hero,.ed-grid,.ed-project-list{grid-template-columns:1fr}
+  .ed-hero,.ed-grid,.ed-project-list,.ed-extra-list{grid-template-columns:1fr}
 }
 </style>

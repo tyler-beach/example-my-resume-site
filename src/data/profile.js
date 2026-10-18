@@ -4,6 +4,7 @@
  // 2. Replace the sample text with your real details
  // 3. Add a photo (optional): put photo.jpg in the public/ folder, then set photo below
  // Only publish information you are comfortable making public.
+ // Empty lists (interests, certifications, honors, learning) hide those sections.
  // ============================================================================
 
 export const profile = {
@@ -13,6 +14,9 @@ export const profile = {
   // Your photo. Put the file in public/ (example: public/photo.jpg).
   // Use '/photo.jpg' to show it, or '' to show your initials instead.
   photo: '/photo.jpg',
+
+  // Short status shown in the hero (Developer theme). Examples: "Open to internships", "Open to collaboration".
+  badge: 'Project Pathfinder',
 
   name: 'Tyler Beach',
   role: 'Security Architect · Product Security · AI-Enabled Security Automation',
@@ -35,11 +39,53 @@ export const profile = {
     'Architecture Governance',
   ],
 
-  education: {
-    school: 'Friends University',
-    degree: 'M.S. Cyber Security',
-    detail: 'Also B.B.A. Management Information Systems · Wichita State University',
-  },
+  // Multiple schools are supported. Keep at least one entry.
+  education: [
+    {
+      school: 'Friends University',
+      degree: 'M.S. Cyber Security',
+      detail: '2016–2018',
+    },
+    {
+      school: 'Wichita State University',
+      degree: 'B.B.A. Management Information Systems',
+      detail: '2014–2016',
+    },
+    {
+      school: 'Cowley College',
+      degree: 'A.A. Information Assurance · A.S. Computer Science',
+      detail: '2012–2014',
+    },
+  ],
+
+  // Credentials and awards. Delete the list or leave it empty to hide the section.
+  certifications: [
+    {
+      name: 'GIAC Certified Penetration Tester (GPEN)',
+      issuer: 'GIAC',
+      detail: 'Offensive security and penetration testing',
+    },
+  ],
+
+  honors: [
+    { title: 'Maurer Leadership Award', detail: 'Recognition for leadership impact' },
+    { title: 'Eagle Scout', detail: 'Boy Scouts of America' },
+  ],
+
+  // Interests and hobbies help visitors see the person behind the resume.
+  interests: [
+    'Teaching and mentoring future technologists',
+    'AI-enabled security engineering',
+    'Architecture decision records and governance',
+    'Building practical tools for AppSec teams',
+  ],
+
+  // “Currently learning” is optional stretch content for early finishers.
+  learning: [
+    'Backstage plugin ecosystems',
+    'Evidence-first AI evaluation harnesses',
+    'gRPC and Protobuf contract design',
+  ],
 
   // Add more objects to this list for more roles. Delete objects you do not need.
   experience: [
