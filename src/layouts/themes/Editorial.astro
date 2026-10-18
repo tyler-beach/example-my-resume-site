@@ -24,24 +24,20 @@ const showInterests = interests.length > 0 || learning.length > 0;
   <section class="ed-hero">
     <div class="ed-hero-copy">
       {profile.badge && <p class="eyebrow">{profile.badge}</p>}
-      {!profile.badge && <p class="eyebrow">Security · Architecture · Enablement</p>}
-      <h1>{profile.name.split(' ')[0]}<br /><em>{profile.name.split(' ').slice(1).join(' ') || profile.name}.</em></h1>
+      <h1>{profile.name}</h1>
+      <p class="ed-role">{profile.role} · {profile.location}</p>
       <p class="lede">{profile.tagline}</p>
-      <p class="ed-role">{profile.role}</p>
       <div class="ed-actions">
-        <a class="btn" href="#projects">Projects ↓</a>
-        {resumeHref && <a class="btn ghost" href={resumeHref} target="_blank" rel="noreferrer">Resume PDF ↗</a>}
-        <a class="btn ghost" href={`mailto:${profile.email}`}>Email ↗</a>
+        <a class="btn" href="#projects">Projects</a>
+        {resumeHref && <a class="btn ghost" href={resumeHref} target="_blank" rel="noreferrer">Resume PDF</a>}
+        <a class="btn ghost" href={`mailto:${profile.email}`}>Email</a>
       </div>
     </div>
     <Avatar profile={profile} assetBase={assetBase} size="xl" class="ed-photo" />
   </section>
 
   <section class="ed-projects" id="projects">
-    <div class="ed-projects-head">
-      <p class="eyebrow">Selected work</p>
-      <h2>Projects.</h2>
-    </div>
+    <p class="eyebrow">Projects</p>
     <div class="ed-project-list">
       {profile.projects.map((project) => (
         <ProjectCard project={project} assetBase={assetBase} />
@@ -122,12 +118,12 @@ const showInterests = interests.length > 0 || learning.length > 0;
   )}
 
   <section class="ed-contact" id="contact">
-    <h2>Let's connect.</h2>
+    <h2>Contact</h2>
     <div class="ed-links">
       <a href={`mailto:${profile.email}`}>{profile.email}</a>
-      <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-      <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-      {resumeHref && <a href={resumeHref} target="_blank" rel="noreferrer">Resume PDF ↗</a>}
+      <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
+      {resumeHref && <a href={resumeHref} target="_blank" rel="noreferrer">Resume PDF</a>}
     </div>
   </section>
 </div>
@@ -136,20 +132,18 @@ const showInterests = interests.length > 0 || learning.length > 0;
 .theme-editorial{--ink:#081220;--soft:#334155;--paper:#f8fafc;--line:#dbe3eb;--teal:#0f766e;--mint:#a7f3d0;--navy-2:#0f2633;color:var(--ink);background:var(--paper);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding-bottom:72px}
 .theme-editorial *{box-sizing:border-box}
 .ed-topbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:22px clamp(18px,6vw,72px);font:10px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.12em;color:var(--teal);border-bottom:1px solid var(--line);background:#fff}
-.ed-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding:clamp(36px,7vw,72px) clamp(18px,6vw,72px);border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff,#f8fafc)}
-.eyebrow{font:700 10px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 12px}
-.ed-hero h1{font:clamp(44px,8vw,84px)/.92 Georgia,serif;letter-spacing:-.04em;margin:0 0 16px;color:var(--ink)}
-.ed-hero h1 em{color:var(--teal);font-style:normal}
-.lede{font:22px/1.4 Georgia,serif;max-width:440px;margin:0 0 8px;color:var(--soft)}
-.ed-role{font:14px/1.45 system-ui,sans-serif;color:var(--soft);margin:0 0 22px}
+.ed-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding:clamp(32px,6vw,56px) clamp(18px,6vw,72px);border-bottom:1px solid var(--line);background:#fff}
+.eyebrow{font:700 11px/1.4 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin:0 0 12px}
+.ed-hero h1{font:clamp(36px,6vw,56px)/1.05 Georgia,serif;letter-spacing:-.02em;margin:0 0 10px;color:var(--ink)}
+.lede{font:17px/1.5 system-ui,sans-serif;max-width:480px;margin:0 0 22px;color:var(--soft)}
+.ed-role{font:14px/1.45 system-ui,sans-serif;color:var(--soft);margin:0 0 10px}
 .ed-actions{display:flex;gap:10px;flex-wrap:wrap}
-.btn{display:inline-flex;padding:12px 16px;background:var(--ink);color:#fff;text-decoration:none;font:700 12px system-ui,sans-serif;border-radius:999px}
+.btn{display:inline-flex;padding:10px 14px;background:var(--ink);color:#fff;text-decoration:none;font:600 13px system-ui,sans-serif;border-radius:6px}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-:global(.ed-photo){justify-self:center;width:min(260px,68vw);height:min(260px,68vw);border-radius:50%;object-fit:cover;background:var(--mint);border:0}
-:global(.avatar-initials.ed-photo){display:grid;place-items:center;font:48px Georgia,serif;color:var(--navy-2)}
-.ed-projects{padding:clamp(36px,6vw,56px) clamp(18px,6vw,72px) 24px}
-.ed-projects-head h2{font:clamp(28px,4vw,40px)/1.05 Georgia,serif;margin:0 0 20px}
-.ed-project-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;--pc-bg:#fff;--pc-line:var(--line);--pc-muted:var(--soft);--pc-accent:var(--teal)}
+:global(.ed-photo){justify-self:center;width:min(220px,60vw);height:min(220px,60vw);border-radius:50%;object-fit:cover;background:var(--mint);border:0}
+:global(.avatar-initials.ed-photo){display:grid;place-items:center;font:40px Georgia,serif;color:var(--navy-2)}
+.ed-projects{padding:clamp(28px,5vw,44px) clamp(18px,6vw,72px) 12px}
+.ed-project-list{border-top:1px solid var(--line);--pc-line:var(--line);--pc-muted:var(--soft);--pc-accent:var(--teal)}
 .ed-section{padding:12px clamp(18px,6vw,72px) 36px}
 .ed-experience{border-top:1px solid var(--line)}
 .role{padding:16px 0;border-bottom:1px solid var(--line)}
@@ -165,16 +159,16 @@ const showInterests = interests.length > 0 || learning.length > 0;
 .ed-edu{margin-bottom:12px}
 .ed-edu h2{font:18px/1.25 Georgia,serif;margin:0 0 4px}
 .skills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
-.skills span{padding:7px 10px;border:1px solid var(--line);border-radius:999px;font:12px system-ui,sans-serif;background:#fff;color:var(--ink)}
+.skills span{padding:6px 10px;border:1px solid var(--line);border-radius:4px;font:12px system-ui,sans-serif;background:#fff;color:var(--ink)}
 .learning-label{margin-top:18px}
 .ed-bullets{margin:0;padding-left:18px;color:var(--soft);font:15px/1.6 system-ui,sans-serif}
 .ed-cred-list{margin:0;padding-left:18px;color:var(--soft);font:14px/1.7 system-ui,sans-serif}
 .ed-cred-list strong{color:var(--ink)}
-.ed-contact{padding:40px clamp(18px,6vw,72px);background:var(--ink);color:#f5f8fd}
-.ed-contact h2{font:clamp(32px,5vw,48px) Georgia,serif;margin:0 0 18px}
+.ed-contact{padding:32px clamp(18px,6vw,72px);border-top:1px solid var(--line);background:#fff}
+.ed-contact h2{font:24px Georgia,serif;margin:0 0 14px;color:var(--ink)}
 .ed-links{display:flex;flex-wrap:wrap;gap:18px}
-.ed-links a{color:var(--mint);font:14px system-ui,sans-serif}
+.ed-links a{color:var(--teal);font:14px system-ui,sans-serif}
 @media(max-width:800px){
-  .ed-hero,.ed-grid,.ed-project-list{grid-template-columns:1fr}
+  .ed-hero,.ed-grid{grid-template-columns:1fr}
 }
 </style>
