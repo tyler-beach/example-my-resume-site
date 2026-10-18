@@ -1,32 +1,34 @@
 ---
 import Avatar from '../../components/Avatar.astro';
+import ExperienceDetails from '../../components/ExperienceDetails.astro';
 const { profile, assetBase = '/' } = Astro.props;
-const education = Array.isArray(profile.education)
-  ? profile.education
-  : profile.education
-    ? [profile.education]
-    : [];
+const education = Array.isArray(profile.education) ? profile.education : profile.education ? [profile.education] : [];
 const certifications = profile.certifications ?? [];
 const honors = profile.honors ?? [];
 const interests = profile.interests ?? [];
 const learning = profile.learning ?? [];
+const careerHighlights = profile.careerHighlights ?? [];
+const resumeHref = profile.resume
+  ? profile.resume.startsWith('http') ? profile.resume : `${assetBase}${profile.resume.replace(/^\//, '')}`
+  : '';
 const showCredentials = certifications.length > 0 || honors.length > 0;
 const showInterests = interests.length > 0 || learning.length > 0;
 ---
 <div class="theme-editorial">
   <header class="ed-topbar">
-    <span class="ed-mark">PORTFOLIO / {new Date().getFullYear()}</span>
+    <span class="ed-mark">RESUME / {new Date().getFullYear()}</span>
     <span>{profile.location.toUpperCase()}</span>
   </header>
 
   <section class="ed-hero">
     <div class="ed-hero-copy">
       {profile.badge && <p class="eyebrow">{profile.badge}</p>}
-      {!profile.badge && <p class="eyebrow">Business · Technology · Data</p>}
+      {!profile.badge && <p class="eyebrow">Security · Architecture · Enablement</p>}
       <h1>{profile.name.split(' ')[0]}<br /><em>{profile.name.split(' ').slice(1).join(' ') || profile.name}.</em></h1>
       <p class="lede">{profile.tagline}</p>
       <div class="ed-actions">
         <a class="btn" href="#experience">Experience ↓</a>
+        {resumeHref && <a class="btn ghost" href={resumeHref} target="_blank" rel="noreferrer">Resume PDF ↗</a>}
         <a class="btn ghost" href={`mailto:${profile.email}`}>Email ↗</a>
       </div>
     </div>
@@ -35,8 +37,10 @@ const showInterests = interests.length > 0 || learning.length > 0;
 
   <section class="ed-grid" id="about">
     <div>
-      <p class="eyebrow">A little about me</p>
+      <p class="eyebrow">About</p>
       <p class="body">{profile.about}</p>
+      <p class="eyebrow">Skills</p>
+      <div class="skills">{profile.skills.map((skill) => <span>{skill}</span>)}</div>
       <p class="eyebrow">Education</p>
       {education.map((item) => (
         <div class="ed-edu">
@@ -44,19 +48,27 @@ const showInterests = interests.length > 0 || learning.length > 0;
           <p class="muted">{item.school} · {item.detail}</p>
         </div>
       ))}
-      <div class="skills">{profile.skills.map((skill) => <span>{skill}</span>)}</div>
     </div>
     <div id="experience">
-      <p class="eyebrow">Selected experience</p>
+      <p class="eyebrow">Experience</p>
       {profile.experience.map((item) => (
         <article class="role">
           <h3>{item.title}</h3>
           <p class="muted">{item.organization} · {item.date}</p>
-          <p class="body">{item.summary}</p>
+          <ExperienceDetails item={item} />
         </article>
       ))}
     </div>
   </section>
+
+  {careerHighlights.length > 0 && (
+    <section class="ed-extra" id="highlights">
+      <p class="eyebrow">Career highlights</p>
+      <ul class="ed-bullets">
+        {careerHighlights.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+  )}
 
   {showCredentials && (
     <section class="ed-extra" id="credentials">
@@ -83,9 +95,7 @@ const showInterests = interests.length > 0 || learning.length > 0;
   {showInterests && (
     <section class="ed-extra" id="interests">
       <p class="eyebrow">Interests & learning</p>
-      {interests.length > 0 && (
-        <div class="skills">{interests.map((item) => <span>{item}</span>)}</div>
-      )}
+      {interests.length > 0 && <div class="skills">{interests.map((item) => <span>{item}</span>)}</div>}
       {learning.length > 0 && (
         <>
           <p class="eyebrow learning-label">Currently learning</p>
@@ -98,7 +108,7 @@ const showInterests = interests.length > 0 || learning.length > 0;
   <section class="ed-projects" id="projects">
     <div class="ed-projects-head">
       <p class="eyebrow">Selected work</p>
-      <h2>Projects and experiments.</h2>
+      <h2>Projects and platforms.</h2>
     </div>
     <div class="ed-project-list">
       {profile.projects.map((project) => (
@@ -116,39 +126,45 @@ const showInterests = interests.length > 0 || learning.length > 0;
     <h2>Let's connect.</h2>
     <div class="ed-links">
       <a href={`mailto:${profile.email}`}>{profile.email}</a>
-      <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
       <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+      {resumeHref && <a href={resumeHref} target="_blank" rel="noreferrer">Resume PDF ↗</a>}
     </div>
   </section>
 </div>
 
 <style>
-.theme-editorial{--ink:#292c25;--soft:#65695e;--paper:#fbf7ed;--line:#ded7c5;--leaf:#71804f;--moss:#dbe7a1;color:var(--ink);background:var(--paper);font-family:Georgia,'Times New Roman',serif;min-height:100vh}
+.theme-editorial{--ink:#081220;--soft:#334155;--paper:#f8fafc;--line:#dbe3eb;--teal:#0f766e;--mint:#a7f3d0;--navy-2:#0f2633;color:var(--ink);background:var(--paper);font-family:Georgia,'Times New Roman',serif;min-height:100vh;padding-bottom:72px}
 .theme-editorial *{box-sizing:border-box}
-.ed-topbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:22px clamp(18px,6vw,72px);font:10px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.12em;color:var(--leaf);border-bottom:1px solid var(--line)}
-.ed-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding:clamp(40px,8vw,90px) clamp(18px,6vw,72px);border-bottom:1px solid var(--line)}
-.eyebrow{font:700 10px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);margin:0 0 12px}
-.ed-hero h1{font:clamp(48px,9vw,96px)/.92 Georgia,serif;letter-spacing:-.04em;margin:0 0 18px}
-.ed-hero h1 em{color:var(--leaf);font-style:normal}
+.ed-topbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:22px clamp(18px,6vw,72px);font:10px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.12em;color:var(--teal);border-bottom:1px solid var(--line);background:#fff}
+.ed-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding:clamp(40px,8vw,90px) clamp(18px,6vw,72px);border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff,#f8fafc)}
+.eyebrow{font:700 10px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 12px}
+.ed-hero h1{font:clamp(48px,9vw,96px)/.92 Georgia,serif;letter-spacing:-.04em;margin:0 0 18px;color:var(--ink)}
+.ed-hero h1 em{color:var(--teal);font-style:normal}
 .lede{font:22px/1.45 Georgia,serif;max-width:420px;margin:0 0 24px;color:var(--soft)}
 .ed-actions{display:flex;gap:10px;flex-wrap:wrap}
-.btn{display:inline-flex;padding:12px 16px;background:#111;color:#fff;text-decoration:none;font:700 12px system-ui,sans-serif;border-radius:999px}
+.btn{display:inline-flex;padding:12px 16px;background:var(--ink);color:#fff;text-decoration:none;font:700 12px system-ui,sans-serif;border-radius:999px}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-:global(.ed-photo){justify-self:center;width:min(280px,70vw);height:min(280px,70vw);border-radius:50%;object-fit:cover;background:var(--moss);border:0}
-:global(.avatar-initials.ed-photo){display:grid;place-items:center;font:48px Georgia,serif;color:#35402b}
+:global(.ed-photo){justify-self:center;width:min(280px,70vw);height:min(280px,70vw);border-radius:50%;object-fit:cover;background:var(--mint);border:0}
+:global(.avatar-initials.ed-photo){display:grid;place-items:center;font:48px Georgia,serif;color:var(--navy-2)}
 .ed-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);padding:clamp(36px,6vw,72px) clamp(18px,6vw,72px)}
 .body{font:16px/1.75 system-ui,sans-serif;color:var(--soft);margin:0 0 20px}
 .muted{font:14px/1.5 system-ui,sans-serif;color:var(--soft);margin:0 0 8px}
-.ed-grid h2,.ed-edu h2{font:28px/1.15 Georgia,serif;margin:0 0 8px}
+.ed-grid h2,.ed-edu h2{font:24px/1.2 Georgia,serif;margin:0 0 6px}
 .ed-edu{margin-bottom:14px}
-.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.skills span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;font:12px system-ui,sans-serif;background:#fff8}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}
+.skills span{padding:8px 10px;border:1px solid var(--line);border-radius:999px;font:12px system-ui,sans-serif;background:#fff;color:var(--ink)}
 .role{padding:18px 0;border-top:1px solid var(--line)}
 .role h3{font:20px/1.2 Georgia,serif;margin:0 0 6px}
+:global(.theme-editorial .exp-summary){font:15px/1.65 system-ui,sans-serif;color:var(--soft);margin:0 0 8px}
+:global(.theme-editorial .exp-highlights){margin:0;padding-left:18px;color:var(--soft);font:14px/1.55 system-ui,sans-serif}
+:global(.theme-editorial .exp-highlights li){margin-bottom:6px}
 .ed-extra{padding:0 clamp(18px,6vw,72px) clamp(36px,5vw,56px)}
+.ed-bullets{margin:0;padding-left:18px;color:var(--soft);font:15px/1.7 system-ui,sans-serif}
+.ed-bullets li{margin-bottom:10px}
 .ed-extra-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .ed-extra-list article{background:#fff;border:1px solid var(--line);padding:18px;border-radius:4px}
-.ed-extra-list span{font:10px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:var(--leaf)}
+.ed-extra-list span{font:10px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:var(--teal)}
 .ed-extra-list h3{font:20px Georgia,serif;margin:8px 0}
 .ed-extra-list p{font:14px/1.55 system-ui,sans-serif;color:var(--soft);margin:0}
 .learning-label{margin-top:22px}
@@ -156,14 +172,14 @@ const showInterests = interests.length > 0 || learning.length > 0;
 .ed-projects-head h2{font:clamp(32px,5vw,48px)/1.05 Georgia,serif;margin:0 0 24px}
 .ed-project-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .ed-project-list article{background:#fff;border:1px solid var(--line);padding:20px;border-radius:4px}
-.ed-project-list span{font:10px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:var(--leaf)}
+.ed-project-list span{font:10px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:var(--teal)}
 .ed-project-list h3{font:22px Georgia,serif;margin:10px 0}
 .ed-project-list p{font:14px/1.6 system-ui,sans-serif;color:var(--soft)}
-.ed-project-list a{font:700 12px system-ui,sans-serif;color:var(--ink)}
-.ed-contact{padding:48px clamp(18px,6vw,72px);background:#111;color:#f5f1e6}
+.ed-project-list a{font:700 12px system-ui,sans-serif;color:var(--teal)}
+.ed-contact{padding:48px clamp(18px,6vw,72px);background:var(--ink);color:#f5f8fd}
 .ed-contact h2{font:clamp(36px,6vw,56px) Georgia,serif;margin:0 0 20px}
 .ed-links{display:flex;flex-wrap:wrap;gap:18px}
-.ed-links a{color:#dbe7a1;font:14px system-ui,sans-serif}
+.ed-links a{color:var(--mint);font:14px system-ui,sans-serif}
 @media(max-width:800px){
   .ed-hero,.ed-grid,.ed-project-list,.ed-extra-list{grid-template-columns:1fr}
 }

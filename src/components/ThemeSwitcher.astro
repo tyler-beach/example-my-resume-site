@@ -1,0 +1,107 @@
+---
+const themes = [
+  { id: 'editorial', label: 'Editorial' },
+  { id: 'developer', label: 'Developer' },
+  { id: 'professional', label: 'Professional' },
+];
+---
+<div class="theme-switcher" role="group" aria-label="Choose layout theme">
+  <span class="theme-switcher-label">Theme</span>
+  {themes.map((theme) => (
+    <button type="button" class="theme-switcher-btn" data-theme-choice={theme.id}>
+      {theme.label}
+    </button>
+  ))}
+</div>
+
+<style>
+.theme-switcher {
+  position: fixed;
+  z-index: 100;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid rgba(15, 118, 110, 0.35);
+  border-radius: 999px;
+  background: rgba(8, 18, 32, 0.92);
+  box-shadow: 0 12px 40px rgba(8, 18, 32, 0.28);
+  backdrop-filter: blur(12px);
+}
+.theme-switcher-label {
+  padding: 0 8px 0 10px;
+  color: #a7f3d0;
+  font: 600 10px/1 ui-monospace, Menlo, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.theme-switcher-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: transparent;
+  color: #b5c5d7;
+  font: 600 12px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+.theme-switcher-btn:hover,
+.theme-switcher-btn[aria-pressed='true'] {
+  background: #0f766e;
+  color: #f5f8fd;
+}
+@media (max-width: 640px) {
+  .theme-switcher {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+</style>
+
+<script is:inline>
+  (function () {
+    var storageKey = 'portfolio-theme';
+    var allowed = ['editorial', 'developer', 'professional'];
+    var params = new URLSearchParams(window.location.search);
+    var fromQuery = params.get('theme');
+    var saved = null;
+    try { saved = localStorage.getItem(storageKey); } catch (e) {}
+    var current = allowed.indexOf(fromQuery) >= 0
+      ? fromQuery
+      : allowed.indexOf(saved) >= 0
+        ? saved
+        : 'editorial';
+
+    function applyTheme(theme) {
+      current = theme;
+      document.querySelectorAll('[data-theme-panel]').forEach(function (panel) {
+        var active = panel.getAttribute('data-theme-panel') === theme;
+        panel.hidden = !active;
+        panel.toggleAttribute('data-active', active);
+      });
+      document.querySelectorAll('[data-theme-choice]').forEach(function (btn) {
+        var active = btn.getAttribute('data-theme-choice') === theme;
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      document.documentElement.setAttribute('data-active-theme', theme);
+      try { localStorage.setItem(storageKey, theme); } catch (e) {}
+      var url = new URL(window.location.href);
+      url.searchParams.set('theme', theme);
+      window.history.replaceState({}, '', url);
+    }
+
+    document.querySelectorAll('[data-theme-choice]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        applyTheme(btn.getAttribute('data-theme-choice'));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    applyTheme(current);
+  })();
+</script>
