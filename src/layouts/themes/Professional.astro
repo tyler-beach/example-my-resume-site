@@ -28,35 +28,17 @@ const showInterests = interests.length > 0 || learning.length > 0;
     {resumeHref && <p><a href={resumeHref} target="_blank" rel="noreferrer">Resume PDF</a></p>}
     <p>{profile.location}</p>
     <hr />
-    <p class="label">Core skills</p>
+    <p class="label">Skills</p>
     <div class="pro-skills">{profile.skills.map((skill) => <span>{skill}</span>)}</div>
     <hr />
     <p class="label">Education</p>
     {education.map((item) => (
       <div class="pro-edu">
-        <strong>{item.school}</strong>
-        <p>{item.degree}</p>
+        <strong>{item.degree}</strong>
+        <p>{item.school}</p>
         <p class="muted">{item.detail}</p>
       </div>
     ))}
-    {showCredentials && (
-      <>
-        <hr />
-        <p class="label">Credentials</p>
-        {certifications.map((item) => (
-          <div class="pro-edu">
-            <strong>{item.name}</strong>
-            <p class="muted">{[item.issuer, item.detail].filter(Boolean).join(' · ')}</p>
-          </div>
-        ))}
-        {honors.map((item) => (
-          <div class="pro-edu">
-            <strong>{item.title}</strong>
-            {item.detail && <p class="muted">{item.detail}</p>}
-          </div>
-        ))}
-      </>
-    )}
   </aside>
 
   <main class="pro-main">
@@ -67,13 +49,26 @@ const showInterests = interests.length > 0 || learning.length > 0;
 
     <section id="about">
       <h2>Profile</h2>
-      <p>{profile.tagline}</p>
-      <p>{profile.about}</p>
+      <p>{profile.tagline} {profile.about}</p>
+    </section>
+
+    <section id="projects">
+      <h2>Selected projects</h2>
+      {profile.projects.map((project) => (
+        <article class="pro-project">
+          <div>
+            <h3>{project.title}</h3>
+            <p class="muted">{project.kind}</p>
+            <p>{project.summary}</p>
+          </div>
+          <a href={project.link} target="_blank" rel="noreferrer">Link ↗</a>
+        </article>
+      ))}
     </section>
 
     {careerHighlights.length > 0 && (
       <section id="highlights">
-        <h2>Career highlights</h2>
+        <h2>Highlights</h2>
         <ul class="pro-bullets">
           {careerHighlights.map((item) => <li>{item}</li>)}
         </ul>
@@ -96,20 +91,6 @@ const showInterests = interests.length > 0 || learning.length > 0;
       ))}
     </section>
 
-    <section id="projects">
-      <h2>Selected projects</h2>
-      {profile.projects.map((project) => (
-        <article class="pro-project">
-          <div>
-            <h3>{project.title}</h3>
-            <p class="muted">{project.kind} · {project.skills.join(', ')}</p>
-            <p>{project.summary}</p>
-          </div>
-          <a href={project.link} target="_blank" rel="noreferrer">Link ↗</a>
-        </article>
-      ))}
-    </section>
-
     {showInterests && (
       <section id="interests">
         <h2>Interests & learning</h2>
@@ -125,61 +106,70 @@ const showInterests = interests.length > 0 || learning.length > 0;
       </section>
     )}
 
+    {showCredentials && (
+      <section id="credentials">
+        <h2>Credentials & honors</h2>
+        <ul class="pro-bullets">
+          {certifications.map((item) => (
+            <li><strong>{item.name}</strong>{item.issuer ? ` · ${item.issuer}` : ''}</li>
+          ))}
+          {honors.map((item) => (
+            <li><strong>{item.title}</strong></li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     <section id="contact">
       <h2>Contact</h2>
       <p>
         Email <a href={`mailto:${profile.email}`}>{profile.email}</a>
         {resumeHref && <> · <a href={resumeHref} target="_blank" rel="noreferrer">Download resume PDF</a></>}
-        {' '}· connect on LinkedIn for opportunities and collaboration.
+        {' '}· LinkedIn for opportunities and collaboration.
       </p>
     </section>
   </main>
 </div>
 
 <style>
-.theme-professional{--ink:#081220;--muted:#64748b;--line:#dbe3eb;--soft:#f8fafc;--side:#081220;--teal:#0f766e;--mint:#a7f3d0;display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh;background:#fff;color:#1a1a1a;font-family:system-ui,-apple-system,sans-serif;padding-bottom:72px}
+.theme-professional{--ink:#081220;--muted:#64748b;--line:#dbe3eb;--soft:#f8fafc;--side:#081220;--teal:#0f766e;--mint:#a7f3d0;display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh;background:#fff;color:#1a1a1a;font-family:system-ui,-apple-system,sans-serif;padding-bottom:72px}
 .theme-professional *{box-sizing:border-box}
-.pro-side{background:var(--side);color:#fff;padding:36px 28px}
-:global(.pro-photo){width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid #fff;margin-bottom:18px}
-:global(.avatar-initials.pro-photo){display:grid;place-items:center;background:#fff;color:var(--side);font:700 36px system-ui,sans-serif}
-.pro-side h1{font:700 28px/1.1 system-ui,sans-serif;margin:0 0 8px}
-.role{font:14px/1.45 system-ui,sans-serif;color:#b5c5d7;margin:0 0 16px}
-.badge{display:inline-block;border:1px solid rgba(167,243,208,.35);padding:6px 8px;border-radius:4px;font:10px ui-monospace,Menlo,monospace;color:var(--mint);margin:0 0 12px}
-.pro-side hr{border:0;border-top:1px solid #1e334c;margin:18px 0}
+.pro-side{background:var(--side);color:#fff;padding:32px 24px}
+:global(.pro-photo){width:108px;height:108px;border-radius:50%;object-fit:cover;border:3px solid #fff;margin-bottom:16px}
+:global(.avatar-initials.pro-photo){display:grid;place-items:center;background:#fff;color:var(--side);font:700 32px system-ui,sans-serif}
+.pro-side h1{font:700 26px/1.1 system-ui,sans-serif;margin:0 0 8px}
+.role{font:13px/1.45 system-ui,sans-serif;color:#b5c5d7;margin:0 0 14px}
+.badge{display:inline-block;border:1px solid rgba(167,243,208,.35);padding:6px 8px;border-radius:4px;font:10px ui-monospace,Menlo,monospace;color:var(--mint);margin:0 0 10px}
+.pro-side hr{border:0;border-top:1px solid #1e334c;margin:16px 0}
 .label{font:700 10px system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9cb5c7;margin:0 0 8px}
-.pro-side p{font:13px/1.5 system-ui,sans-serif;margin:0 0 6px;color:#e8eef5}
+.pro-side p{font:13px/1.45 system-ui,sans-serif;margin:0 0 5px;color:#e8eef5}
 .pro-side a{color:var(--mint)}
-.pro-side strong{display:block;margin-bottom:4px}
-.pro-edu{margin-bottom:14px}
+.pro-side strong{display:block;margin-bottom:2px;font-size:13px}
+.pro-edu{margin-bottom:12px}
 .pro-skills{display:flex;flex-wrap:wrap;gap:6px}
-.pro-skills span{background:#0f2633;border:1px solid #1e334c;padding:6px 8px;border-radius:4px;font:11px system-ui,sans-serif}
+.pro-skills span{background:#0f2633;border:1px solid #1e334c;padding:5px 7px;border-radius:4px;font:11px system-ui,sans-serif}
 .pro-skills.light span{background:var(--soft);border-color:var(--line);color:var(--ink)}
 .muted{color:var(--muted)!important}
-.pro-main{padding:36px clamp(22px,4vw,48px);background:#fff}
-.pro-top{display:flex;justify-content:space-between;gap:12px;font:11px ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-.pro-main h2{font:700 20px system-ui,sans-serif;color:var(--ink);margin:28px 0 12px;padding-top:8px;border-top:1px solid var(--line)}
+.pro-main{padding:32px clamp(20px,4vw,44px);background:#fff}
+.pro-top{display:flex;justify-content:space-between;gap:12px;font:11px ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.pro-main h2{font:700 18px system-ui,sans-serif;color:var(--ink);margin:24px 0 10px;padding-top:8px;border-top:1px solid var(--line)}
 .pro-main section:first-of-type h2{border-top:0;padding-top:0;margin-top:0}
-.pro-main p{font:15px/1.65 system-ui,sans-serif;color:#334155;margin:0 0 10px}
+.pro-main p{font:14px/1.55 system-ui,sans-serif;color:#334155;margin:0 0 8px}
 .pro-main a{color:var(--teal)}
-.label-inline{font:700 11px system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px!important}
-.pro-bullets{margin:0;padding-left:18px;color:#334155;font:15px/1.65 system-ui,sans-serif}
-.pro-bullets li{margin-bottom:8px}
-.pro-role{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--soft)}
-.pro-role h3{margin:0;font:600 16px system-ui,sans-serif}
-.pro-role .summary{grid-column:1/-1;margin:6px 0 0}
+.label-inline{font:700 11px system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px!important}
+.pro-bullets{margin:0;padding-left:18px;color:#334155;font:14px/1.55 system-ui,sans-serif}
+.pro-bullets li{margin-bottom:6px}
+.pro-role{display:grid;grid-template-columns:1fr auto;gap:2px 14px;padding:12px 0;border-bottom:1px solid var(--soft)}
+.pro-role h3{margin:0;font:600 15px system-ui,sans-serif}
+.pro-role .summary{grid-column:1/-1;margin:4px 0 0}
 .pro-role span{font:12px ui-monospace,Menlo,monospace;color:var(--muted)}
-:global(.theme-professional .exp-summary){margin:0 0 8px;color:#334155;font:14px/1.6 system-ui,sans-serif}
-:global(.theme-professional .exp-highlights){margin:0;padding-left:18px;color:#475569;font:14px/1.55 system-ui,sans-serif}
-:global(.theme-professional .exp-highlights li){margin-bottom:6px}
-.pro-project{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--soft)}
-.pro-project h3{margin:0 0 4px;font:600 16px system-ui,sans-serif}
+:global(.theme-professional .exp-summary){margin:0;color:#475569;font:13px/1.5 system-ui,sans-serif}
+:global(.theme-professional .exp-highlights){display:none}
+.pro-project{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--soft)}
+.pro-project h3{margin:0 0 2px;font:600 15px system-ui,sans-serif}
 .pro-project a{flex-shrink:0;font:700 12px system-ui,sans-serif;color:var(--teal)}
 @media(max-width:800px){
   .theme-professional{grid-template-columns:1fr}
-  .pro-side{padding:28px 22px}
-}
-@media print{
-  .theme-professional{grid-template-columns:280px 1fr;padding-bottom:0}
-  .pro-side{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .pro-side{padding:24px 20px}
 }
 </style>
