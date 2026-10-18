@@ -9,14 +9,17 @@
 
 export const profile = {
   // Visual layout. Download a pre-set theme ZIP from the workshop site, or change this value.
-  theme: 'developer',
+  theme: 'refined',
 
   // Your photo. Put the file in public/ (example: public/photo.jpg).
   // Use '/photo.jpg' to show it, or '' to show your initials instead.
   photo: '/photo.jpg',
 
-  // Short status shown in the hero (Developer theme). Examples: "Open to internships", "Open to collaboration".
+  // Short status shown in the hero. Examples: "Open to internships", "Open to collaboration".
   badge: 'Project Pathfinder',
+
+  // Large serif headline for the Refined layout.
+  headline: 'Secure products. Clearer decisions.',
 
   name: 'Tyler Beach',
   role: 'Security Architect · Product Security · AI-Enabled Security Automation',
@@ -37,6 +40,26 @@ export const profile = {
     'DevSecOps',
     'AI-Enabled Security Automation',
     'Architecture Governance',
+  ],
+
+  // Numbered focus areas (Refined layout). Leave empty to hide.
+  services: [
+    {
+      title: 'Application & product security',
+      detail: 'Threat modeling, architecture reviews, and secure delivery practices that fit real engineering constraints.',
+    },
+    {
+      title: 'Architecture governance',
+      detail: 'ADRs, decision platforms, and evidence-first checks that keep intent aligned with what ships.',
+    },
+    {
+      title: 'Security automation',
+      detail: 'AI-enabled and pipeline-native feedback that reduces friction instead of adding another gate.',
+    },
+    {
+      title: 'Teaching & enablement',
+      detail: 'Curriculum, mentoring, and practical guidance that helps teams and students build security judgment.',
+    },
   ],
 
   // Multiple schools are supported. Keep at least one entry.
