@@ -1,14 +1,12 @@
 ---
-import { profile } from '../../data/profile.js';
+import { profile, allProjects } from '../../data/profile.js';
 import ProjectCase from '../../layouts/ProjectCase.astro';
 
 export function getStaticPaths() {
-  return (profile.projects ?? [])
-    .filter((project) => project.slug)
-    .map((project) => ({
-      params: { slug: project.slug },
-      props: { project },
-    }));
+  return allProjects().map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
 }
 
 const { project } = Astro.props;
