@@ -1,8 +1,8 @@
 ---
 const themes = [
-  { id: 'editorial', label: 'Editorial' },
+  { id: 'compact', label: 'Compact' },
+  { id: 'professional', label: 'Sidebar' },
   { id: 'developer', label: 'Developer' },
-  { id: 'professional', label: 'Professional' },
 ];
 ---
 <div class="theme-switcher" role="group" aria-label="Choose layout theme">
@@ -66,7 +66,7 @@ const themes = [
 <script is:inline>
   (function () {
     var storageKey = 'portfolio-theme';
-    var allowed = ['editorial', 'developer', 'professional'];
+    var allowed = ['compact', 'professional', 'developer'];
     var params = new URLSearchParams(window.location.search);
     var fromQuery = params.get('theme');
     var saved = null;
@@ -75,7 +75,7 @@ const themes = [
       ? fromQuery
       : allowed.indexOf(saved) >= 0
         ? saved
-        : 'editorial';
+        : 'compact';
 
     function applyTheme(theme) {
       current = theme;
