@@ -44,17 +44,17 @@ const showInterests = interests.length > 0 || learning.length > 0;
 
   <main class="pro-main">
     <div class="pro-top">
-      <span>Professional profile</span>
-      <span>Resume / {new Date().getFullYear()}</span>
+      <span>{profile.location}</span>
+      <span>{new Date().getFullYear()}</span>
     </div>
 
     <section id="about">
-      <h2>Profile</h2>
+      <h2>About</h2>
       <p>{profile.tagline} {profile.about}</p>
     </section>
 
     <section id="projects">
-      <h2>Selected projects</h2>
+      <h2>Projects</h2>
       <div class="pro-projects">
         {profile.projects.map((project) => (
           <ProjectCard project={project} assetBase={assetBase} />
@@ -162,7 +162,7 @@ const showInterests = interests.length > 0 || learning.length > 0;
 :global(.theme-professional .exp-summary){margin:0 0 6px;color:#475569;font:13px/1.5 system-ui,sans-serif}
 :global(.theme-professional .exp-highlights){margin:0;padding-left:18px;color:#64748b;font:13px/1.5 system-ui,sans-serif}
 :global(.theme-professional .exp-highlights li){margin-bottom:4px}
-.pro-projects{display:grid;gap:12px;--pc-bg:#fff;--pc-line:var(--line);--pc-muted:var(--muted);--pc-accent:var(--teal)}
+.pro-projects{border-top:1px solid var(--soft);--pc-line:var(--soft);--pc-muted:var(--muted);--pc-accent:var(--teal)}
 @media(max-width:800px){
   .theme-professional{grid-template-columns:1fr}
   .pro-side{padding:24px 20px}

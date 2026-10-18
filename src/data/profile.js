@@ -1,10 +1,17 @@
 // ============================================================================
- // PERSONALIZE THIS FILE
- // Theme toggle switches Editorial / Developer / Professional.
- // Projects with a `slug` get a case-study page at /projects/<slug>/.
- // Put screenshots in public/projects/ and reference them from `cover` / `images`.
- // Only publish information you are comfortable making public.
- // ============================================================================
+// PERSONALIZE THIS FILE — most of the site is driven from here.
+//
+// theme: 'editorial' | 'developer' | 'professional'
+//   (visitors can still switch with the theme toggle)
+//
+// Projects:
+//   - Always fill title, summary, skills, link (and demo if you have one)
+//   - Optional slug → creates /projects/<slug>/ detail page
+//   - Optional description, highlights, images for that page
+//   - Put screenshots in public/projects/ then list paths in images: ['/projects/foo.jpg']
+//
+// Only publish information you are comfortable making public.
+// ============================================================================
 
 export const profile = {
   theme: 'editorial',
@@ -12,14 +19,15 @@ export const profile = {
   photo: '/photo.jpg',
   resume: '/resume.pdf',
 
-  badge: 'Open to collaboration',
+  // Optional short label under your name. Leave '' to hide.
+  badge: '',
 
   name: 'Tyler Beach',
-  role: 'Security Architect · Product Security · AI-Enabled Automation',
+  role: 'Security Architect',
   location: 'Wichita, Kansas',
-  tagline: 'I help teams ship secure products without unnecessary friction.',
+  tagline: 'Application security, product security, and practical architecture reviews.',
   about:
-    'Security architect and former software engineer focused on application security, product security, and AI-enabled architectural governance across healthcare, manufacturing, SaaS, and nonprofit technology. Adjunct professor at Wichita State University.',
+    'Security architect and former software engineer. I work on application security, product security, and AI-assisted architecture checks across healthcare, manufacturing, and SaaS. I also teach cybersecurity at Wichita State University.',
 
   email: 'tylerxbeach@gmail.com',
   github: 'https://github.com/tyler-beach',
@@ -33,9 +41,7 @@ export const profile = {
     'Secure SDLC',
     'Cloud Security',
     'DevSecOps',
-    'AI-Enabled Security Engineering',
     'GRC',
-    'Developer Enablement',
   ],
 
   careerHighlights: [],
@@ -73,190 +79,136 @@ export const profile = {
 
   interests: [
     'Teaching and mentoring',
-    'AI-enabled security engineering',
     'Architecture decision records',
-    'Advisory and guest lecturing',
+    'Guest lecturing',
   ],
 
   learning: [
     'Backstage plugins',
-    'Evidence-first AI evaluation',
-    'Protobuf / gRPC contracts',
+    'Protobuf / gRPC',
   ],
 
-  // Wide experience rows: short summary + up to two supporting points.
+  // Keep experience readable: one short summary, optional 1–2 bullets.
   experience: [
     {
       title: 'Senior Application Security Architect',
       organization: 'Datavant',
       date: 'Nov 2024–Present',
       summary:
-        'Partner across product, engineering, and platform teams on security architecture and secure delivery in regulated healthcare environments.',
+        'Security architecture and secure delivery work with product and engineering teams in healthcare.',
       highlights: [
-        'Lead threat modeling, architecture reviews, and remediation across cloud, Kubernetes, and CI/CD ecosystems.',
-        'Design AI-enabled automation that strengthens architectural governance without slowing engineering teams.',
+        'Threat modeling, architecture reviews, and remediation across cloud and CI/CD.',
       ],
     },
     {
       title: 'Adjunct Professor',
       organization: 'Wichita State University',
       date: 'Jan 2024–Present',
-      summary:
-        'Created and teach MIS 711, the Barton School’s graduate cybersecurity course.',
+      summary: 'Created and teach MIS 711, the Barton School graduate cybersecurity course.',
       highlights: [
-        'Built the curriculum from the ground up with hands-on labs and consultant-style student projects.',
-        'Mentor MIS students through guest lectures, industry guidance, and career development.',
+        'Hands-on labs and industry-style student projects.',
       ],
     },
     {
       title: 'Senior Application Security Engineer',
       organization: 'Cargill',
       date: 'Jul 2020–Nov 2024',
-      summary:
-        'Primary AppSec lead for digital transformation and manufacturing modernization initiatives.',
+      summary: 'AppSec lead for digital transformation and manufacturing modernization programs.',
       highlights: [
-        'Influenced secure SDLC practices across 1,000+ developers and 3,000+ applications in 70+ countries.',
-        'Modernized CI/CD security workflows across hybrid, cloud, and operational technology environments.',
+        'Secure SDLC support across a large global engineering organization.',
       ],
     },
     {
       title: 'IT Risk Analyst',
       organization: 'Cargill',
       date: 'Oct 2018–Jul 2020',
-      summary:
-        'Business-facing security and risk support across global IT and operational technology environments.',
-      highlights: [
-        'Led risk assessments, security reviews, audit support, and control governance for manufacturing operations.',
-      ],
+      summary: 'Security and risk support for global IT and operational technology teams.',
+      highlights: [],
     },
     {
       title: 'Advisory Board Member',
       organization: 'Starkey Inc',
       date: '2022–2024',
-      summary: 'Advised leadership on technology direction, workforce readiness, and long-term program strategy.',
-      highlights: [
-        'Connected industry perspective with community technology initiatives and planning.',
-      ],
+      summary: 'Advised on technology direction and workforce readiness.',
+      highlights: [],
     },
     {
       title: 'Software Developer',
       organization: 'Nonprofit Solutions, Inc.',
       date: '2016–2018',
-      summary:
-        'Built full-stack .NET applications supporting multi-agency nonprofit operations.',
+      summary: 'Built .NET applications for multi-agency nonprofit operations.',
       highlights: [
-        'Delivered a multi-agency CRM and HIPAA-aligned digital workflows for foster care and behavioral health.',
+        'CRM and HIPAA-aligned workflows for foster care and behavioral health.',
       ],
     },
   ],
 
-  // Projects with `slug` generate /projects/<slug>/ case-study pages.
   projects: [
     {
       slug: 'adr-deviation-platform',
-      kind: 'Project Pathfinder',
       title: 'ADR Deviation Platform',
-      summary:
-        'Evidence-first checks that compare architectural decisions to what actually ships.',
-      cover: '/projects/pathfinder-adr.svg',
+      summary: 'Checks whether shipped code still matches approved architecture decisions.',
+      description:
+        'Part of Project Pathfinder. Compares architecture decision records to implementation so reviewers have shared evidence when things drift.',
       images: ['/projects/pathfinder-home.jpg', '/projects/pathfinder-arch.jpg'],
-      problem:
-        'Teams approve architecture decisions, then implementation drifts—and reviewers lack shared evidence when that happens.',
-      approach:
-        'Built an evidence-first analysis platform with contracts, PoC workflows, and reviewable findings tied back to ADRs and source changes.',
-      outcome:
-        'A living design notebook and demo site that shows how Pathfinder turns intent into reviewable architecture assurance.',
       highlights: [
-        'Public docs and interactive walkthrough at tyler-beach.github.io/Platform',
-        'Go-oriented analysis direction with Protobuf contracts and AI-assisted assessment',
-        'Pairs with the Architecture Governance Platform as Project Pathfinder',
+        'Public docs and walkthrough at tyler-beach.github.io/Platform',
+        'Contracts and reviewable findings tied back to ADRs',
       ],
-      skills: ['Go', 'Architecture', 'AI pipelines', 'Protobuf / gRPC'],
+      skills: ['Go', 'Architecture', 'Protobuf'],
       link: 'https://github.com/tyler-beach/Platform',
       demo: 'https://tyler-beach.github.io/Platform/',
     },
     {
       slug: 'architecture-governance-platform',
-      kind: 'Project Pathfinder',
       title: 'Architecture Governance Platform',
-      summary:
-        'Backstage workspace for ADRs, governance nodes, RFCs, and decision management.',
-      cover: '/projects/pathfinder-governance.svg',
-      images: ['/projects/pathfinder-governance.svg'],
-      problem:
-        'Architecture decisions live in scattered docs, so teams cannot manage approvals, intent, and related ADRs in one place.',
-      approach:
-        'Extended Backstage into a governance platform with nodes, ADRs, playbooks, multi-team RFCs, search, and an AI assistant.',
-      outcome:
-        'A companion user platform for the ADR Deviation service—together they form Project Pathfinder.',
+      summary: 'Backstage workspace for ADRs, RFCs, and decision tracking.',
+      description:
+        'Companion Pathfinder project. Gives teams one place for governance nodes, ADRs, playbooks, and multi-team RFCs.',
       highlights: [
-        'Governance Nodes, ADRs, Intent Engine, and playbooks in one shell',
-        'Multi-team RFC flows with per-ADR checks',
-        'Local Postgres / pgvector setup for search and assistant features',
+        'ADRs, intent, and playbooks in one Backstage shell',
+        'Search and assistant features with local Postgres',
       ],
-      skills: ['Backstage', 'TypeScript', 'Postgres / pgvector', 'Governance'],
+      skills: ['Backstage', 'TypeScript', 'Postgres'],
       link: 'https://github.com/skyeshanohan/ADR_Backstage',
     },
     {
       slug: 'github-dashboard',
-      kind: 'Security ops',
       title: 'GitHub Dashboard',
-      summary: 'Org-wide view of repos, compliance, and security findings with local caching.',
-      cover: '/projects/github-dashboard.svg',
-      images: ['/projects/github-dashboard.svg'],
-      problem:
-        'Security and platform teams burn GitHub API quota jumping between alerts, CODEOWNERS, and compliance checks.',
-      approach:
-        'Built a React dashboard that authenticates with a PAT, caches data locally, and surfaces findings with ownership context.',
-      outcome:
-        'Faster triage of Code Scanning, Secrets, and Dependabot findings across filtered repository sets.',
+      summary: 'Org view of repos, compliance checks, and security findings.',
+      description:
+        'React dashboard that uses a GitHub PAT, caches data locally, and surfaces Code Scanning, Secrets, and Dependabot findings with ownership context.',
       highlights: [
-        'IndexedDB caching to cut repeat API calls',
-        'Filters by custom properties such as Pod and EnvironmentType',
-        'Compliance checks for production repositories',
+        'Local caching to reduce API calls',
+        'Filters by custom repository properties',
       ],
-      skills: ['React', 'TypeScript', 'Octokit', 'IndexedDB'],
+      skills: ['React', 'TypeScript', 'Octokit'],
       link: 'https://github.com/tyler-beach/github-dashboard',
     },
     {
       slug: 'github-findings-manager',
-      kind: 'Security ops',
       title: 'GitHub Findings Manager',
-      summary: 'Go CLI that collects and reports organization security findings at scale.',
-      cover: '/projects/findings-manager.svg',
-      images: ['/projects/findings-manager.svg'],
-      problem:
-        'Manual exports of SAST, secrets, and Dependabot alerts do not scale across large organizations.',
-      approach:
-        'Built a parallel Go collector with rate limiting, SQLite caching, and Excel reporting, plus Actions automation.',
-      outcome:
-        'Repeatable findings reports that security teams can schedule and share.',
+      summary: 'Go CLI that collects org security findings and writes Excel reports.',
+      description:
+        'Parallel collector with rate limiting and SQLite caching, plus a GitHub Actions workflow for scheduled runs.',
       highlights: [
-        'Worker pools with rate limiting for GitHub API collection',
-        'Excel dashboards with trend-friendly reporting',
-        'GitHub Actions workflow for automated releases',
+        'Worker pools with rate limiting',
+        'Excel reporting for security teams',
       ],
-      skills: ['Go', 'GitHub API', 'Excel reporting', 'Actions'],
+      skills: ['Go', 'GitHub API', 'Actions'],
       link: 'https://github.com/tyler-beach/github-findings-manager',
     },
     {
       slug: 'railguard-cursor-rules',
-      kind: 'Secure coding',
       title: 'R.A.I.L.G.U.A.R.D. Cursor Rules',
-      summary: 'Cursor rules that keep AI-assisted coding security-aware by default.',
-      cover: '/projects/railguard.svg',
-      images: ['/projects/railguard.svg'],
-      problem:
-        'AI coding assistants move fast and can skip security guardrails unless those expectations are encoded in the workflow.',
-      approach:
-        'Packaged practical Cursor rules aligned to the R.A.I.L.G.U.A.R.D. framework for day-to-day secure development.',
-      outcome:
-        'A reusable starting point for teams adopting AI-assisted coding with security defaults.',
+      summary: 'Cursor rules that keep AI-assisted coding security-aware.',
+      description:
+        'A small rules pack aligned to the R.A.I.L.G.U.A.R.D. framework for day-to-day secure development with coding assistants.',
       highlights: [
-        'Mapped to the open R.A.I.L.G.U.A.R.D. framework',
-        'Focused on developer enablement rather than tooling theatre',
+        'Mapped to an open secure-coding framework',
+        'Meant as a starting point teams can fork',
       ],
-      skills: ['Secure coding', 'Developer enablement', 'Cursor rules'],
+      skills: ['Secure coding', 'Cursor rules'],
       link: 'https://github.com/tyler-beach/railguard-cursor-coding',
     },
   ],

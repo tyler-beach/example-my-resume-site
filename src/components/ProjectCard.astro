@@ -1,103 +1,72 @@
 ---
-const { project, assetBase = '/', variant = 'default' } = Astro.props;
-const cover = project.cover
-  ? project.cover.startsWith('http')
-    ? project.cover
-    : `${assetBase}${project.cover.replace(/^\//, '')}`
-  : '';
-const caseHref = project.slug ? `${assetBase}projects/${project.slug}/` : '';
-const externalHref = project.demo || project.link;
+const { project, assetBase = '/' } = Astro.props;
+const detailHref = project.slug ? `${assetBase}projects/${project.slug}/` : '';
 ---
-<article class:list={['project-card', `project-card--${variant}`]}>
-  {cover && (
-    <a class="project-card-media" href={caseHref || externalHref} target={caseHref ? undefined : '_blank'} rel={caseHref ? undefined : 'noreferrer'}>
-      <img src={cover} alt="" width="640" height="360" loading="lazy" />
-    </a>
-  )}
-  <div class="project-card-body">
-    <span class="project-card-kind">{project.kind}</span>
+<article class="project-row">
+  <div class="project-row-main">
     <h3>{project.title}</h3>
     <p>{project.summary}</p>
-    {project.skills?.length > 0 && <small>{project.skills.join(' · ')}</small>}
-    <div class="project-card-actions">
-      {caseHref && <a class="project-card-primary" href={caseHref}>Case study →</a>}
-      {project.link && (
-        <a href={project.link} target="_blank" rel="noreferrer">{caseHref ? 'Repo ↗' : 'Open ↗'}</a>
-      )}
-    </div>
+    {project.skills?.length > 0 && (
+      <p class="project-row-skills">{project.skills.join(' · ')}</p>
+    )}
+  </div>
+  <div class="project-row-links">
+    {detailHref && <a href={detailHref}>Details</a>}
+    {project.demo && (
+      <a href={project.demo} target="_blank" rel="noreferrer">Demo</a>
+    )}
+    {project.link && (
+      <a href={project.link} target="_blank" rel="noreferrer">Repo</a>
+    )}
   </div>
 </article>
 
 <style>
-.project-card {
+.project-row {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--pc-line, #dbe3eb);
-  border-radius: 14px;
-  background: var(--pc-bg, #fff);
-  color: inherit;
+  justify-content: space-between;
+  gap: 16px 24px;
+  align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--pc-line, #dbe3eb);
 }
-.project-card-media {
-  display: block;
-  aspect-ratio: 16 / 9;
-  background: #0f2633;
-  overflow: hidden;
-}
-.project-card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.25s ease;
-}
-.project-card:hover .project-card-media img {
-  transform: scale(1.03);
-}
-.project-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 16px 18px 18px;
+.project-row-main {
+  min-width: 0;
   flex: 1;
 }
-.project-card-kind {
-  font: 600 10px/1.3 ui-monospace, Menlo, monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--pc-accent, #0f766e);
+.project-row h3 {
+  margin: 0 0 4px;
+  font: 600 1.05rem/1.3 system-ui, sans-serif;
 }
-.project-card h3 {
+.project-row p {
   margin: 0;
-  font: 600 1.15rem/1.25 system-ui, sans-serif;
-}
-.project-card p {
-  margin: 0;
-  flex: 1;
   color: var(--pc-muted, #64748b);
-  font: 400 0.9rem/1.55 system-ui, sans-serif;
+  font: 400 0.9rem/1.5 system-ui, sans-serif;
 }
-.project-card small {
-  color: var(--pc-accent, #0f766e);
-  font: 500 0.72rem/1.4 ui-monospace, Menlo, monospace;
+.project-row-skills {
+  margin-top: 6px !important;
+  color: var(--pc-accent, #0f766e) !important;
+  font-size: 0.78rem !important;
 }
-.project-card-actions {
+.project-row-links {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  align-items: center;
-  margin-top: 4px;
+  flex-shrink: 0;
+  padding-top: 2px;
 }
-.project-card-actions a {
-  font: 700 0.8rem/1 system-ui, sans-serif;
-  color: inherit;
+.project-row-links a {
+  font: 600 0.85rem/1 system-ui, sans-serif;
+  color: var(--pc-accent, #0f766e);
   text-decoration: none;
 }
-.project-card-primary {
-  color: var(--pc-accent, #0f766e) !important;
+.project-row-links a:hover {
+  text-decoration: underline;
 }
-@media (prefers-reduced-motion: reduce) {
-  .project-card-media img { transition: none; }
-  .project-card:hover .project-card-media img { transform: none; }
+@media (max-width: 640px) {
+  .project-row {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 </style>
