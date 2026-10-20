@@ -102,6 +102,18 @@ export const studentProfile = {
       ],
       skills: ['HTML', 'CSS', 'User research'],
       link: 'https://github.com/tyler-beach',
+      screenshots: [
+        {
+          src: '/projects/campus-resource-finder-1.svg',
+          alt: 'Search screen with tutoring and advising cards',
+          caption: 'Search-first home view with service cards.'
+        },
+        {
+          src: '/projects/campus-resource-finder-2.svg',
+          alt: 'Writing center detail card',
+          caption: 'Service detail with hours and next actions.'
+        }
+      ],
     },
     {
       slug: 'home-lab-notes',
@@ -116,6 +128,13 @@ export const studentProfile = {
       ],
       skills: ['Linux', 'Networking', 'Documentation'],
       link: 'https://github.com/tyler-beach',
+      screenshots: [
+        {
+          src: '/projects/home-lab-notes-1.svg',
+          alt: 'Home lab network diagram',
+          caption: 'Network sketch and terminal checklist.'
+        }
+      ],
     },
     {
       slug: 'secure-setup-checklist',
@@ -130,6 +149,13 @@ export const studentProfile = {
       ],
       skills: ['Security basics', 'Git', 'Documentation'],
       link: 'https://github.com/tyler-beach',
+      screenshots: [
+        {
+          src: '/projects/secure-setup-checklist-1.svg',
+          alt: 'Secure setup checklist',
+          caption: 'Checklist used before demos and handoffs.'
+        }
+      ],
     },
   ],
 };
@@ -214,6 +240,13 @@ export const emergingProfile = {
       ],
       skills: ['Go', 'GitHub API', 'Actions'],
       link: 'https://github.com/tyler-beach/github-findings-manager',
+      screenshots: [
+        {
+          src: '/projects/github-findings-manager-1.svg',
+          alt: 'Findings spreadsheet export',
+          caption: 'Weekly findings export for security review.'
+        }
+      ],
     },
     {
       slug: 'github-dashboard',
@@ -227,6 +260,13 @@ export const emergingProfile = {
       ],
       skills: ['React', 'TypeScript', 'Octokit'],
       link: 'https://github.com/tyler-beach/github-dashboard',
+      screenshots: [
+        {
+          src: '/projects/github-dashboard-1.svg',
+          alt: 'Repository health dashboard',
+          caption: 'Org view for alerts, ownership, and failing checks.'
+        }
+      ],
     },
     {
       slug: 'railguard-cursor-rules',
@@ -240,6 +280,13 @@ export const emergingProfile = {
       ],
       skills: ['Secure coding', 'Cursor rules'],
       link: 'https://github.com/tyler-beach/railguard-cursor-coding',
+      screenshots: [
+        {
+          src: '/projects/railguard-cursor-rules-1.svg',
+          alt: 'Rules checklist concept',
+          caption: 'Habit checklist style for secure AI-assisted coding.'
+        }
+      ],
     },
     {
       slug: 'secure-setup-checklist',
@@ -389,6 +436,13 @@ export const professionalProfile = {
       ],
       skills: ['Backstage', 'TypeScript', 'Postgres'],
       link: 'https://github.com/skyeshanohan/ADR_Backstage',
+      screenshots: [
+        {
+          src: '/projects/architecture-governance-platform-1.svg',
+          alt: 'Governance workspace concept',
+          caption: 'Concept for ADR and RFC tracking in one place.'
+        }
+      ],
     },
     {
       slug: 'github-dashboard',
