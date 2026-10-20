@@ -370,7 +370,7 @@ export const professionalProfile = {
       organization: 'Wichita State University',
       date: 'Jan 2024–Present',
       summary:
-        'Created and teach the Barton School’s graduate cybersecurity course (MIS 711; originally MIS 690E) — the first cybersecurity course in the school.',
+        'Created and teach the Barton School’s graduate cybersecurity course (MIS 711; originally MIS 690E).',
       highlights: [
         'Built the curriculum from the ground up: foundational concepts plus hands-on labs with industry tools and real-world scenarios.',
         'Teach application security, network security, access control, cryptography, data protection, host hardening, and information security risk management.',
