@@ -1,9 +1,6 @@
 ---
-import { stages } from '../data/profile.js';
-import Student from '../layouts/themes/Student.astro';
-import Emerging from '../layouts/themes/Emerging.astro';
-import Professional from '../layouts/themes/Professional.astro';
-import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import { profile } from '../data/profile.js';
+import Resume from '../layouts/Resume.astro';
 
 const assetBase = import.meta.env.BASE_URL;
 const pageBase = import.meta.env.BASE_URL;
@@ -13,25 +10,15 @@ const pageBase = import.meta.env.BASE_URL;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Example resume site with student, emerging, and professional journey layouts." />
+    <meta name="description" content={profile.tagline} />
     <meta name="theme-color" content="#000000" />
-    <title>Tyler Beach · Journey examples</title>
+    <title>{profile.name} · Resume</title>
     <style>
       html, body { margin: 0; min-width: 320px; background: #fff; }
       a { text-underline-offset: 3px; }
-      [data-theme-panel][hidden] { display: none !important; }
     </style>
   </head>
   <body>
-    <ThemeSwitcher />
-    <div data-theme-panel="student">
-      <Student profile={stages.student} assetBase={assetBase} pageBase={pageBase} />
-    </div>
-    <div data-theme-panel="emerging" hidden>
-      <Emerging profile={stages.emerging} assetBase={assetBase} pageBase={pageBase} />
-    </div>
-    <div data-theme-panel="professional" hidden>
-      <Professional profile={stages.professional} assetBase={assetBase} pageBase={pageBase} />
-    </div>
+    <Resume profile={profile} assetBase={assetBase} pageBase={pageBase} />
   </body>
 </html>

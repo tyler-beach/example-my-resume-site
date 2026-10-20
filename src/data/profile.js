@@ -1,10 +1,7 @@
 // ============================================================================
-// EXAMPLE SITE — three journey stages for workshop demos.
-// Content is illustrative (not a perfect timeline). Students normally
-// keep one profile object; here we ship three so each layout feels full.
-//
-// theme: 'student' | 'emerging' | 'professional'
-// Projects with `slug` get /projects/<slug>/ pages.
+// EXAMPLE SITE — filled-out personal example of the workshop resume layout.
+// Content is illustrative. Students use one profile.js and leave unused
+// sections as []. Projects with `slug` get /projects/<slug>/ pages.
 // ============================================================================
 
 const shared = {
@@ -492,7 +489,7 @@ export const stages = {
   professional: professionalProfile,
 };
 
-/** Default export used by shared project pages and older imports. */
+/** Single example profile shown on the home page. */
 export const profile = professionalProfile;
 
 export function allProjects() {
