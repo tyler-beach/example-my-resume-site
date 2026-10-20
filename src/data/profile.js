@@ -303,10 +303,11 @@ export const professionalProfile = {
   ...shared,
   theme: 'professional',
   stageLabel: 'Professional example',
-  role: 'Security Architect',
-  tagline: 'Application security, product security, and practical architecture reviews.',
+  role: 'Security Architect · Product Security · AI-Enabled Security Automation',
+  tagline:
+    'Application security, product security, and practical architecture reviews that help teams ship securely without unnecessary friction.',
   about:
-    'Security architect and former software engineer. I work on application security, product security, and AI-assisted architecture checks across healthcare, manufacturing, and SaaS. I also teach cybersecurity at Wichita State University.',
+    'Security architect and former software engineer. I help organizations build secure products at scale across healthcare, manufacturing, SaaS, and nonprofit technology — spanning cloud-native, hybrid, and on-prem environments (AWS, Azure, Kubernetes, OT, and regulated product ecosystems). I partner with engineers, product teams, and leadership on application security, product security, security architecture, threat modeling, secure SDLC, GRC, and developer enablement. I also teach cybersecurity as an adjunct professor at Wichita State University.',
   badge: '',
   skills: [
     'Application Security',
@@ -316,17 +317,23 @@ export const professionalProfile = {
     'Secure SDLC',
     'Cloud Security',
     'DevSecOps',
+    'Security Automation',
+    'AI-Enabled Security Engineering',
+    'Developer Enablement',
+    'Risk Management',
     'GRC',
+    'Software Development',
+    'Agile & Waterfall',
   ],
   education: [
     {
       school: 'Friends University',
-      degree: 'M.S. Cyber Security',
+      degree: 'Master of Science (M.S.), Cyber Security',
       detail: '2016–2018',
     },
     {
       school: 'Wichita State University',
-      degree: 'B.B.A. Management Information Systems',
+      degree: 'Bachelor of Business Administration (B.B.A.), Management Information Systems',
       detail: '2014–2016',
     },
     {
@@ -337,54 +344,87 @@ export const professionalProfile = {
   ],
   coursework: [],
   activities: [],
+  careerHighlights: [
+    'Built secure software development practices that influenced 1,000+ developers across 3,000+ applications serving 70+ countries.',
+    'Led AppSec supporting global manufacturing modernization and connected operational technology initiatives.',
+    'Designed AI-enabled security automation that identifies architecture design variances against approved ADRs and surfaces context-aware feedback in pull request workflows.',
+    'Integrated security tooling into CI/CD to improve developer workflows and accelerate remediation.',
+    'Designed a scalable remediation strategy focused on the most critical findings, improving regulatory vulnerability SLA compliance.',
+  ],
   experience: [
     {
       title: 'Senior Application Security Architect',
       organization: 'Datavant',
       date: 'Nov 2024–Present',
       summary:
-        'Security architecture and secure delivery work with product and engineering teams in healthcare.',
+        'Security architecture and secure delivery with product, engineering, cloud, and platform teams across AWS, Azure, Kubernetes, CI/CD, and identity-driven healthcare ecosystems.',
       highlights: [
-        'Threat modeling, architecture reviews, and remediation across cloud and CI/CD.',
+        'Provide security architecture guidance, threat modeling, architecture reviews, and remediation support for products supporting provider workflows, release of information, and healthcare data operations in regulated environments.',
+        'Design and implement security automation that reduces friction for engineering teams and strengthens architectural governance through AI-enabled analysis.',
+        'Lead a scalable remediation program focused on the highest-priority findings, improving vulnerability management performance and regulatory SLA compliance.',
+        'Support security integration after M&A, aligning practices, governance expectations, and architectural standards across acquired business units.',
       ],
     },
     {
       title: 'Adjunct Professor',
       organization: 'Wichita State University',
       date: 'Jan 2024–Present',
-      summary: 'Created and teach MIS 711, the Barton School graduate cybersecurity course.',
-      highlights: ['Hands-on labs and industry-style student projects.'],
+      summary:
+        'Created and teach the Barton School’s graduate cybersecurity course (MIS 711; originally MIS 690E) — the first cybersecurity course in the school.',
+      highlights: [
+        'Built the curriculum from the ground up: foundational concepts plus hands-on labs with industry tools and real-world scenarios.',
+        'Teach application security, network security, access control, cryptography, data protection, host hardening, and information security risk management.',
+        'Run an experiential model where students operate as security consultants for simulated organizations and present a final consultant demonstration.',
+        'Mentor students through the WSU MIS community via guest lectures, industry guidance, and career mentorship.',
+      ],
     },
     {
       title: 'Senior Application Security Engineer',
       organization: 'Cargill',
       date: 'Jul 2020–Nov 2024',
-      summary: 'AppSec lead for digital transformation and manufacturing modernization programs.',
+      summary:
+        'Primary AppSec resource for major product and digital transformation programs, including global manufacturing modernization and Factory of the Future.',
       highlights: [
-        'Secure SDLC support across a large global engineering organization.',
+        'Enhanced secure software development practices influencing 1,000+ developers and security outcomes across 3,000+ applications serving 70+ countries.',
+        'Partnered with engineering, DevOps, cloud, and vendors to modernize CI/CD security (SAST/SCA) across hybrid, cloud, and OT environments.',
+        'Provided architecture guidance, threat modeling, architecture reviews, pen-test support, and remediation strategy for high-visibility products including CARVE and CHEKT.',
+        'Built operational metrics and maturity indicators for product security performance and remediation progress; communicated risk to engineering through C-level leaders.',
       ],
     },
     {
-      title: 'IT Risk Analyst',
+      title: 'Information Technology Risk Analyst',
       organization: 'Cargill',
       date: 'Oct 2018–Jul 2020',
-      summary: 'Security and risk support for global IT and operational technology teams.',
-      highlights: [],
+      summary:
+        'Business-facing security and risk support for global IT and operational technology environments supporting manufacturing operations.',
+      highlights: [
+        'Led and supported risk assessments, security reviews, audits, compliance initiatives, remediation management, and control governance across global business segments.',
+        'Acted as the technical go-to for the team with business stakeholders, engineering, and security leadership.',
+        'Helped design and mature governance programs, security standards, and control frameworks aligned to business, regulatory, and operational requirements.',
+        'Conducted reviews across hybrid, on-premises, and OT environments, including infrastructure, network, and third-party assessments.',
+      ],
     },
     {
       title: 'Advisory Board Member',
       organization: 'Starkey Inc',
       date: '2022–2024',
-      summary: 'Advised on technology direction and workforce readiness.',
-      highlights: [],
+      summary:
+        'Technology advisory board member focused on technology direction, workforce readiness, and industry-aligned initiatives.',
+      highlights: [
+        'Partnered with leadership on technology strategy, emerging trends, and strengthening technical programs.',
+        'Helped bridge industry and community technology initiatives through advisory engagement.',
+      ],
     },
     {
       title: 'Software Developer',
       organization: 'Nonprofit Solutions, Inc.',
-      date: '2016–2018',
-      summary: 'Built .NET applications for multi-agency nonprofit operations.',
+      date: 'Mar 2016–Oct 2018',
+      summary:
+        'Full-stack .NET developer and primary technical resource for multi-agency nonprofit application architecture, development, and platform enhancement.',
       highlights: [
-        'CRM and HIPAA-aligned workflows for foster care and behavioral health.',
+        'Built a multi-agency CRM and internal apps for ticketing, time tracking, onboarding/access, directory services, vehicle management, and process automation.',
+        'Designed secure digital workflows that replaced paper-based foster care and behavioral health processes with auditable, HIPAA-aligned applications.',
+        'Delivered general IT and security awareness training across distributed teams.',
       ],
     },
   ],
@@ -400,36 +440,41 @@ export const professionalProfile = {
     { title: 'Eagle Scout', detail: '' },
   ],
   interests: [
-    'Teaching and mentoring',
-    'Architecture decision records',
-    'Guest lecturing',
+    'Teaching and mentoring future technology leaders',
+    'Architecture decision records and secure architecture governance',
+    'Guest lecturing and advisory engagement',
+    'AI-enabled security engineering',
   ],
-  learning: ['Backstage plugins', 'Protobuf / gRPC'],
+  learning: ['Backstage plugins', 'Protobuf / gRPC', 'AI-assisted architecture review workflows'],
   projects: [
     {
       slug: 'adr-deviation-platform',
       title: 'ADR Deviation Platform',
-      summary: 'Checks whether shipped code still matches approved architecture decisions.',
+      summary:
+        'AI-enabled checks for whether shipped code still matches approved architecture decision records — context-aware feedback in PR workflows.',
       description:
-        'Part of Project Pathfinder. Compares architecture decision records to implementation so reviewers have shared evidence when things drift.',
+        'Part of Project Pathfinder (with the Architecture Governance Platform). Compares ADRs to implementation so reviewers share evidence when design drifts. Built to scale security architecture review with automation rather than ticket queues alone.',
       images: ['/projects/pathfinder-home.jpg', '/projects/pathfinder-arch.jpg'],
       highlights: [
         'Public docs and walkthrough at tyler-beach.github.io/Platform',
         'Contracts and reviewable findings tied back to ADRs',
+        'Designed for developer-facing feedback inside pull requests',
       ],
-      skills: ['Go', 'Architecture', 'Protobuf'],
+      skills: ['Go', 'Architecture', 'Protobuf', 'AI-assisted review'],
       link: 'https://github.com/tyler-beach/Platform',
       demo: 'https://tyler-beach.github.io/Platform/',
     },
     {
       slug: 'architecture-governance-platform',
       title: 'Architecture Governance Platform',
-      summary: 'Backstage workspace for ADRs, RFCs, and decision tracking.',
+      summary:
+        'Backstage workspace for ADRs, RFCs, playbooks, and multi-team decision tracking — the Pathfinder companion to the deviation service.',
       description:
-        'Companion Pathfinder project. Gives teams one place for governance nodes, ADRs, playbooks, and multi-team RFCs.',
+        'Gives product and platform teams one place for governance nodes, ADRs, playbooks, and RFCs. Pairs with the ADR Deviation Platform so approved decisions and runtime evidence stay connected.',
       highlights: [
         'ADRs, intent, and playbooks in one Backstage shell',
         'Search and assistant features with local Postgres',
+        'Supports architectural governance at product-team scale',
       ],
       skills: ['Backstage', 'TypeScript', 'Postgres'],
       link: 'https://github.com/skyeshanohan/ADR_Backstage',
@@ -437,19 +482,20 @@ export const professionalProfile = {
         {
           src: '/projects/architecture-governance-platform-1.svg',
           alt: 'Governance workspace concept',
-          caption: 'Concept for ADR and RFC tracking in one place.'
-        }
+          caption: 'Concept for ADR and RFC tracking in one place.',
+        },
       ],
     },
     {
       slug: 'github-dashboard',
       title: 'GitHub Dashboard',
-      summary: 'Org view of repos, compliance checks, and security findings.',
+      summary: 'Org view of repos, compliance checks, and security findings for developer enablement.',
       description:
-        'React dashboard that uses a GitHub PAT, caches data locally, and surfaces Code Scanning, Secrets, and Dependabot findings with ownership context.',
+        'React dashboard that uses a GitHub PAT, caches data locally, and surfaces Code Scanning, Secrets, and Dependabot findings with ownership context — built to make org security posture visible without another siloed tool.',
       highlights: [
         'Local caching to reduce API calls',
         'Filters by custom repository properties',
+        'Ownership context for Code Scanning, Secrets, and Dependabot',
       ],
       skills: ['React', 'TypeScript', 'Octokit'],
       link: 'https://github.com/tyler-beach/github-dashboard',
@@ -457,12 +503,13 @@ export const professionalProfile = {
     {
       slug: 'github-findings-manager',
       title: 'GitHub Findings Manager',
-      summary: 'Go CLI that collects org security findings and writes Excel reports.',
+      summary: 'Go CLI that collects org security findings and writes Excel reports for remediation tracking.',
       description:
-        'Parallel collector with rate limiting and SQLite caching, plus a GitHub Actions workflow for scheduled runs.',
+        'Parallel collector with rate limiting and SQLite caching, plus a GitHub Actions workflow for scheduled runs — geared toward vulnerability management and SLA-oriented remediation programs.',
       highlights: [
         'Worker pools with rate limiting',
-        'Excel reporting for security teams',
+        'Excel reporting for security and engineering partners',
+        'Scheduled collection via GitHub Actions',
       ],
       skills: ['Go', 'GitHub API', 'Actions'],
       link: 'https://github.com/tyler-beach/github-findings-manager',
@@ -470,14 +517,14 @@ export const professionalProfile = {
     {
       slug: 'railguard-cursor-rules',
       title: 'R.A.I.L.G.U.A.R.D. Cursor Rules',
-      summary: 'Cursor rules that keep AI-assisted coding security-aware.',
+      summary: 'Cursor rules that keep AI-assisted coding security-aware for day-to-day developer enablement.',
       description:
-        'A small rules pack aligned to the R.A.I.L.G.U.A.R.D. framework for day-to-day secure development with coding assistants.',
+        'A small rules pack aligned to the R.A.I.L.G.U.A.R.D. framework so teams using coding assistants keep secure defaults and review habits in the loop.',
       highlights: [
         'Mapped to an open secure-coding framework',
         'Meant as a starting point teams can fork',
       ],
-      skills: ['Secure coding', 'Cursor rules'],
+      skills: ['Secure coding', 'Cursor rules', 'Developer enablement'],
       link: 'https://github.com/tyler-beach/railguard-cursor-coding',
     },
   ],
